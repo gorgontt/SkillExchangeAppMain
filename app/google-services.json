@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "677917752407",
+    "project_id": "skillexchangeappmain",
+    "storage_bucket": "skillexchangeappmain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677917752407:android:6f63482acadf87cac7b712",
+        "android_client_info": {
+          "package_name": "com.example.skillexchange"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV-nc9baOkctv_arL25-4tqMJ9Gb_UfEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
