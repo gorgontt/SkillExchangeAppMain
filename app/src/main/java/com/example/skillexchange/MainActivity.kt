@@ -1,35 +1,46 @@
 package com.example.skillexchange
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.Button
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.example.skillexchange.databinding.ActivityMainBinding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var btnSignIn: Button
+    private lateinit var btnSignUp: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        btnSignIn = findViewById(R.id.btn_signIn)
+        btnSignUp = findViewById(R.id.btn_signUp)
 
-        val navView: BottomNavigationView = binding.navView
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        btnSignIn.setOnClickListener {
+            val signInFragment = SignInFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main, signInFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        btnSignUp.setOnClickListener {
+            val registerFragment = RegisterFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main, registerFragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 }
