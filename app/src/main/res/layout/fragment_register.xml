@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterFragment"
-    android:background="@color/blueMain">
+    android:background="@color/blueMain"
+    android:id="@+id/frame_register">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,6 +26,7 @@
 
 
             <ImageView
+                android:id="@+id/arrow_btn_image_registerFrag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
@@ -125,15 +127,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="50dp"
-                android:text="Забыли пароль?"
-                android:textColor="@color/black"
-                android:textSize="14dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -161,12 +154,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/sign_in_tv_from_registerFrag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="50dp"
                     android:text="Уже есть аккаунт?"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueMain"
                     android:textSize="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView"

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignInFragment"
-    android:background="@color/blueMain">
+    android:background="@color/blueMain"
+    android:id="@+id/frame_sign_in">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,6 +25,7 @@
 
 
             <ImageView
+                android:id="@+id/arrow_btn_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
@@ -111,7 +113,7 @@
                 android:layout_marginRight="50dp"
                 android:text="Забыли пароль?"
                 android:textSize="14dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/blueHint"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -139,12 +141,13 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/register_tv_from_signIn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="50dp"
                     android:text="Регистрация"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blueMain"
                     android:textSize="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView"
