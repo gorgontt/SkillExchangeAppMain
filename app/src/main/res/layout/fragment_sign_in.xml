@@ -98,6 +98,7 @@
                     android:textSize="16dp"
                     android:textColorHint="@color/blueHint"
                     android:textColor="@color/blueHint"
+                    android:inputType="textPassword"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
