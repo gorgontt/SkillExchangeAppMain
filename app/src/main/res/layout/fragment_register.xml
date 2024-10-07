@@ -63,34 +63,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="293dp"
-                android:layout_height="53dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/rounded_corners_ed_text">
 
-                <EditText
-                    android:layout_width="265dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/rounded_corners_ed_text"
-                    android:hint="Имя"
-                    android:textSize="16dp"
-                    android:textColorHint="@color/blueHint"
-                    android:textColor="@color/blueHint"
-                    android:inputType="textCapWords"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="293dp"
                 android:layout_height="53dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/rounded_corners_ed_text">
 
                 <EditText
