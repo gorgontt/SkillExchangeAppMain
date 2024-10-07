@@ -75,7 +75,7 @@
                     android:layout_width="265dp"
                     android:layout_height="45dp"
                     android:background="@drawable/rounded_corners_ed_text"
-                    android:hint="Логин"
+                    android:hint="Email"
                     android:textSize="16dp"
                     android:textColorHint="@color/blueHint"
                     android:textColor="@color/blueHint"

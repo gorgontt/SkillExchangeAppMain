@@ -59,7 +59,7 @@ class RegisterFragment : Fragment() {
                             requireActivity().supportFragmentManager.beginTransaction()
                                 .replace(
                                     R.id.frame_register,
-                                    SignInFragment()
+                                    RegisterBioFragment()
                                 ) // Предполагаем, что вы используете контейнер для смены фрагментов
                                 .addToBackStack(null)
                                 .commit()

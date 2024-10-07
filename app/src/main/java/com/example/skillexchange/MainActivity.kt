@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.hide()
+
         btnSignIn = findViewById(R.id.btn_signIn)
         btnSignUp = findViewById(R.id.btn_signUp)
         
