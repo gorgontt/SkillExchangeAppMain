@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterBioFragment"
     android:background="@color/blueMain">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Биография профиля"
+                android:text="Регистрация"
                 android:fontFamily="@font/lora"
                 android:background="@color/blueMain"
                 android:textColor="@color/white"
@@ -74,11 +74,9 @@
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Имя"
-                android:layout_marginBottom="15dp"
+                android:hint="Введите свое имя"
+                android:layout_marginBottom="23dp"
                 android:layout_marginTop="30dp"
-                android:inputType="textCapWords"
-                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/EditTextStyle"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="23dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
@@ -99,8 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#001C1A42"
-                    android:textSize="18dp"
-                    android:text="Укажите свой возраст"
+                    android:text="Укажите дату рождения"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,8 +105,6 @@
                     android:id="@+id/userage_edT_regbio"
                     android:layout_width="37dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView4"
                     app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -120,7 +115,6 @@
                     android:layout_marginStart="10dp"
                     android:background="#001C1A42"
                     android:text="лет"
-                    android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/userage_edT_regbio"
                     app:layout_constraintStart_toEndOf="@+id/userage_edT_regbio"
                     app:layout_constraintTop_toTopOf="@+id/userage_edT_regbio" />
@@ -131,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/EditTextStyle"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="23dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
@@ -140,8 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#001C1A42"
-                    android:text="Пол"
-                    android:textSize="18dp"
+                    android:text="Укажите дату рождения"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -158,23 +151,25 @@
 
                     <TextView
                         android:id="@+id/female_btn_regbio"
-                        style="@style/GenderButton"
                         android:layout_width="91dp"
                         android:layout_height="32dp"
+                        android:background="@drawable/button_stroke_radius"
                         android:gravity="center"
                         android:text="женский"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="17dp" />
 
                     <TextView
                         android:id="@+id/male_btn_regbio"
-                        style="@style/GenderButton"
                         android:layout_width="91dp"
                         android:layout_height="32dp"
                         android:layout_marginLeft="15dp"
+                        android:background="@drawable/button_stroke_radius"
                         android:gravity="center"
                         android:text="мужсккой"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="17dp" />
 
                 </LinearLayout>
@@ -187,7 +182,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/EditTextStyle"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="23dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:orientation="horizontal">
@@ -198,71 +193,56 @@
                     android:layout_height="wrap_content"
                     android:background="#001C1A42"
                     android:text="Добавить фото профиля"
-                    android:textSize="18dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/pick_photo_regbio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:background="#001C1A42"
                     android:src="@drawable/add_icon_blue"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView6"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/textView6" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#001C1A42"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="5dp">
+                style="@style/EditTextStyle"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="left">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    style="@style/EditTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginLeft="20dp"
+                <ImageView
+                    android:id="@+id/userphoto_iv_regbio"
+                    android:layout_width="111dp"
+                    android:layout_height="111dp"
+                    android:background="#001C1A42"
+                    android:src="@drawable/user_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/userphoto_iv_regbio"
-                        android:layout_width="111dp"
-                        android:layout_height="111dp"
-                        android:background="#001C1A42"
-                        android:src="@drawable/user_icon"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/arrow_btn_go_regbio"
                     style="@style/ArrowIconGoStyle"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
-                    android:layout_gravity="bottom|right"
                     android:layout_marginEnd="25dp"
                     android:background="#001C1A42"
+                    android:layout_gravity="bottom|right"
                     android:src="@drawable/arrow_icon_goo"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginBottom="30dp"/>
 
 
         </LinearLayout>

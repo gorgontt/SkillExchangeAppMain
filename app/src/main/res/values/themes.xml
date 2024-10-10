@@ -11,5 +11,52 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@drawable/button_corners</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="RegisterDialog">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@drawable/two_rounded_corners_white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">20dp</item>m>
+        <item name="android:background">@drawable/rounded_corners_ed_text</item>
+    </style>
+
+    <style name="ArrowIconGoStyle">
+        <item name="android:tint">@color/black</item>
+    </style>
+
+    <style name="TextColor">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="RegisterBioStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:background">@drawable/two_corners_right_radius</item>
+    </style>
+
+    <style name="GenderButton">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:background">@drawable/button_stroke_radius</item>
+    </style>
+
 </resources>

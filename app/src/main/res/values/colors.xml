@@ -9,7 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blueMain">#3040F8</color>
     <color name="gray">#F7F7F7</color>
-    <color name="blueHint">#303745</color>
-    <color name="blueDark">#303745</color>
+    <color name="blueHint">#1C1A42</color>
+    <color name="blueDark">#040737</color>
     <color name="yellowLight">#FFBF10</color>
+    <color name="purple">#8C94FC</color>
+
+    <color name="editTextLightVersion">#303745</color>
+    <color name="editTextDarkVersion">#D6CECE</color>
 </resources>

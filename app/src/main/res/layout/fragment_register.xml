@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterFragment"
-    android:background="@color/blueMain"
-    android:id="@+id/frame_register">
+    android:id="@+id/frame_register"
+    android:background="@color/blueMain">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/blueMain">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -20,6 +21,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="49dp"
             android:orientation="horizontal"
+            android:background="@color/blueMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,15 +29,18 @@
 
             <ImageView
                 android:id="@+id/arrow_btn_image_registerFrag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="43dp"
+                android:layout_height="43dp"
+                android:background="@color/blueMain"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/arrow" />
+                android:src="@drawable/arrow_icon_backk"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Регистрация"
+                android:fontFamily="@font/lora"
+                android:background="@color/blueMain"
                 android:textColor="@color/white"
                 android:textSize="24dp" />
 
@@ -44,6 +49,7 @@
 
         <ImageView
             android:id="@+id/imageView3"
+            android:background="@color/blueMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -54,9 +60,9 @@
 
 
         <LinearLayout
+            style="@style/RegisterDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/two_rounded_corners_white"
             android:gravity="center|top"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,51 +71,60 @@
 
 
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="293dp"
-                android:layout_height="53dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/rounded_corners_ed_text">
-
                 <EditText
+                    style="@style/EditTextStyle"
                     android:id="@+id/register_login"
-                    android:layout_width="265dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/rounded_corners_ed_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:textSize="16dp"
-                    android:textColorHint="@color/blueHint"
-                    android:textColor="@color/blueHint"
+                    android:layout_marginBottom="23dp"
+                    android:layout_marginTop="60dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="293dp"
-                android:layout_height="53dp"
-                android:background="@drawable/rounded_corners_ed_text">
 
                 <EditText
+                    style="@style/EditTextStyle"
                     android:id="@+id/register_password"
-                    android:layout_width="265dp"
-                    android:layout_height="45dp"
-                    android:background="@drawable/rounded_corners_ed_text"
-                    android:hint="Пароль не менее 6 символов"
-                    android:textSize="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Пароль"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/blueHint"
-                    android:textColor="@color/blueHint"
+                    android:layout_marginBottom="23dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:id="@+id/repeat_password_register_frag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Повторите пароль"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Пароль должен содержать не менее 6 символов"
+                android:textSize="14dp"
+                android:textColor="@color/purple"
+                android:layout_marginTop="10dp"/>
+
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -121,19 +136,20 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="20dp"
                     android:text="Регистрация"
-                    android:textColor="@color/black"
                     android:textSize="24dp"
+                    android:fontFamily="@font/lora"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/register_arrow_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="40dp"
-                    android:src="@drawable/arrow_black"
+                    style="@style/ArrowIconGoStyle"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/arrow_icon_goo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -144,8 +160,9 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="50dp"
                     android:text="Уже есть аккаунт?"
-                    android:textColor="@color/blueMain"
+                    android:textColor="@color/yellowLight"
                     android:textSize="15dp"
+                    android:fontFamily="@font/lora"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
