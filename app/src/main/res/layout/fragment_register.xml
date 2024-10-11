@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".RegisterFragment"
     android:id="@+id/frame_register"
+    android:clickable="false"
     android:background="@color/blueMain">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="false"
         android:background="@color/blueMain">
 
         <LinearLayout
@@ -20,27 +22,29 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="49dp"
-            android:orientation="horizontal"
             android:background="@color/blueMain"
+            android:orientation="horizontal"
+            android:clickable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
 
             <ImageView
-                android:id="@+id/arrow_btn_image_registerFrag"
+                android:id="@+id/back_btn"
                 android:layout_width="43dp"
                 android:layout_height="43dp"
-                android:background="@color/blueMain"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/arrow_icon_backk"/>
+                android:background="@color/blueMain"
+                android:src="@drawable/arrow_icon_backk" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Регистрация"
-                android:fontFamily="@font/lora"
                 android:background="@color/blueMain"
+                android:fontFamily="@font/lora"
+                android:text="Вход в аккаунт"
+                android:clickable="false"
                 android:textColor="@color/white"
                 android:textSize="24dp" />
 
@@ -49,10 +53,11 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:background="@color/blueMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:clickable="false"
+            android:background="@color/blueMain"
             android:src="@drawable/illustration_skillexch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,88 +68,70 @@
             style="@style/RegisterDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center|top"
+            android:gravity="center"
             android:orientation="vertical"
+            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
 
-
-                <EditText
-                    style="@style/EditTextStyle"
-                    android:id="@+id/register_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:layout_marginBottom="23dp"
-                    android:layout_marginTop="60dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"/>
-
-
-                <EditText
-                    style="@style/EditTextStyle"
-                    android:id="@+id/register_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Пароль"
-                    android:inputType="textPassword"
-                    android:layout_marginBottom="23dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"/>
+            <EditText
+                android:id="@+id/email"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="23dp"
+                android:hint="Email" />
 
 
             <EditText
+                android:id="@+id/password"
                 style="@style/EditTextStyle"
-                android:id="@+id/repeat_password_register_frag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Повторите пароль"
-                android:inputType="textPassword"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="23dp"
+                android:hint="Пароль"
+                android:inputType="textPassword" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/repeat_password"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Пароль должен содержать не менее 6 символов"
-                android:textSize="14dp"
-                android:textColor="@color/purple"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Повторите пароль"
+                android:inputType="textPassword" />
 
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp">
+                android:clickable="false"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Регистрация"
-                    android:textSize="24dp"
                     android:fontFamily="@font/lora"
+                    android:text="Регистрация"
+                    android:clickable="false"
+                    android:textSize="24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/register_arrow_btn"
+                    android:id="@+id/go_btn"
                     style="@style/ArrowIconGoStyle"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
@@ -154,15 +141,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/register_login_btn"
+                    android:id="@+id/open_signInFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="50dp"
+                    android:fontFamily="@font/lora"
                     android:text="Уже есть аккаунт?"
                     android:textColor="@color/yellowLight"
                     android:textSize="15dp"
-                    android:fontFamily="@font/lora"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -175,7 +161,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </FrameLayout>

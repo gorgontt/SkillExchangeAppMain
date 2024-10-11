@@ -5,11 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterBioFragment"
-    android:background="@color/blueMain">
+    android:background="@color/blueMain"
+    android:clickable="false"
+    android:id="@+id/frame_regbio">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="false"
         android:background="@color/blueMain">
 
         <LinearLayout
@@ -19,6 +22,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="49dp"
             android:orientation="horizontal"
+            android:clickable="false"
             android:background="@color/blueMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +30,7 @@
 
 
             <ImageView
-                android:id="@+id/arrow_btn_back_regibio"
+                android:id="@+id/arrow_btn_back_regbio"
                 android:layout_width="43dp"
                 android:layout_height="43dp"
                 android:background="@color/blueMain"
@@ -51,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:clickable="false"
             android:src="@drawable/illustration_skillexch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +68,7 @@
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:orientation="vertical"
+            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -91,6 +97,7 @@
                 android:layout_height="wrap_content"
                 style="@style/EditTextStyle"
                 android:layout_marginBottom="15dp"
+                android:clickable="false"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 

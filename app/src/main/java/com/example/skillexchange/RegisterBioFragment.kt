@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.example.skillexchange.bodyapp.BottomNavActivity
+import com.example.skillexchange.databinding.FragmentRegisterBinding
+import com.example.skillexchange.databinding.FragmentRegisterBioBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -21,12 +23,14 @@ import com.google.firebase.storage.StorageReference
 
 
 class RegisterBioFragment : Fragment() {
-
+    private lateinit var _binding: FragmentRegisterBioBinding
+    private val binding get() = _binding!!
     private var db = Firebase.firestore
     private lateinit var storageRef: StorageReference
 
     private lateinit var etName: EditText
     private lateinit var etAge: EditText
+
     private lateinit var ivPhoto: ImageView
     private lateinit var btnFemale: TextView
     private lateinit var btnMale: TextView
@@ -42,7 +46,8 @@ class RegisterBioFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_register_bio, container, false)
+        _binding = FragmentRegisterBioBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         storageRef = FirebaseStorage.getInstance().getReference("UsersPhotos")
 
@@ -77,6 +82,21 @@ class RegisterBioFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val backBtn: View? = view?.findViewById(R.id.arrow_btn_back_regbio)
+
+        backBtn?.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(
+                    R.id.frame_regbio,
+                    RegisterFragment()
+                )
+                .commit()
+        }
     }
 
     private fun openGallery() {
@@ -124,6 +144,10 @@ class RegisterBioFragment : Fragment() {
                 fileRef.downloadUrl.addOnSuccessListener { uri ->
                     userMap["photoUrl"] = uri.toString() // Устанавливаем URL в userMap
                     saveUserDataToFirestore(userMap)
+
+//                    val intent = Intent(requireContext(), BottomNavActivity::class.java)
+//                    startActivity(intent)
+//                    requireActivity().finish()
                 }
                     .addOnFailureListener {
                         Toast.makeText(activity, "Ошибка получения URL изображения", Toast.LENGTH_SHORT).show()
@@ -147,4 +171,5 @@ class RegisterBioFragment : Fragment() {
                 Toast.makeText(activity, "Ошибка сохранения данных", Toast.LENGTH_LONG).show()
             }
     }
+
 }
