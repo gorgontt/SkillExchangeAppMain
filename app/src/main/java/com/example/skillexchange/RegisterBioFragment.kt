@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.example.skillexchange.bodyapp.BottomNavActivity
@@ -38,6 +39,8 @@ class RegisterBioFragment : Fragment() {
     private lateinit var btnGo: ImageView
     private lateinit var btnPickPhoto: ImageView
 
+    private var progressBar: ProgressBar? = null
+
     private var selectedGender: String? = null
     private val PICK_IMAGE_REQUEST = 1
     private var imageUri: Uri? = null
@@ -49,6 +52,8 @@ class RegisterBioFragment : Fragment() {
         _binding = FragmentRegisterBioBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        progressBar?.visibility = View.INVISIBLE
+
         storageRef = FirebaseStorage.getInstance().getReference("UsersPhotos")
 
         etName = view.findViewById(R.id.username_edT_regbio)
@@ -58,6 +63,8 @@ class RegisterBioFragment : Fragment() {
         btnMale = view.findViewById(R.id.male_btn_regbio)
         btnGo = view.findViewById(R.id.arrow_btn_go_regbio)
         btnPickPhoto = view.findViewById(R.id.pick_photo_regbio)
+
+        progressBar = view.findViewById<ProgressBar>(R.id.progress_Bar)
 
         btnPickPhoto.setOnClickListener {
             openGallery()
@@ -78,6 +85,7 @@ class RegisterBioFragment : Fragment() {
         }
 
         btnGo.setOnClickListener {
+            progressBar?.visibility = View.VISIBLE
             uploadImageToFirebase()
         }
 
@@ -144,10 +152,6 @@ class RegisterBioFragment : Fragment() {
                 fileRef.downloadUrl.addOnSuccessListener { uri ->
                     userMap["photoUrl"] = uri.toString() // Устанавливаем URL в userMap
                     saveUserDataToFirestore(userMap)
-
-//                    val intent = Intent(requireContext(), BottomNavActivity::class.java)
-//                    startActivity(intent)
-//                    requireActivity().finish()
                 }
                     .addOnFailureListener {
                         Toast.makeText(activity, "Ошибка получения URL изображения", Toast.LENGTH_SHORT).show()
@@ -161,12 +165,15 @@ class RegisterBioFragment : Fragment() {
     private fun saveUserDataToFirestore(userMap: HashMap<String, String?>) {
         db.collection("users").add(userMap)
             .addOnSuccessListener {
-                Toast.makeText(activity, "Данные успешно сохранены", Toast.LENGTH_LONG).show()
-                etName.text.clear()
-                etAge.text.clear()
-                ivPhoto.setImageURI(null) // Сброс изображения
-                selectedGender = null
+
+                Toast.makeText(activity, "Регистрация прошла успешно", Toast.LENGTH_LONG).show()
+                progressBar?.visibility = View.INVISIBLE
+
+                val intent = Intent(requireContext(), BottomNavActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
             }
+
             .addOnFailureListener {
                 Toast.makeText(activity, "Ошибка сохранения данных", Toast.LENGTH_LONG).show()
             }

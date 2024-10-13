@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.skillexchange.databinding.FragmentRegisterBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -20,6 +21,8 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
 
+    private var progressBar: ProgressBar? = null
+
 
 
     override fun onCreateView(
@@ -29,6 +32,10 @@ class RegisterFragment : Fragment() {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         auth = FirebaseAuth.getInstance()
+
+        progressBar = view.findViewById<ProgressBar>(R.id.progress_Bar_register)
+
+        progressBar?.visibility = View.INVISIBLE
 
 
         binding.goBtn.setOnClickListener {
@@ -44,8 +51,13 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(requireContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show()
 
             } else {
+                progressBar?.visibility = View.VISIBLE
+
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(requireActivity(), OnCompleteListener { task ->
+
+                        progressBar?.visibility = View.INVISIBLE
+
                         if (task.isSuccessful) {
                             Toast.makeText(
                                 requireContext(),
@@ -69,6 +81,7 @@ class RegisterFragment : Fragment() {
                     })
             }
         }
+        progressBar?.visibility = View.INVISIBLE
 
         binding.backBtn.setOnClickListener {
             val intent = Intent(activity, MainActivity::class.java)
