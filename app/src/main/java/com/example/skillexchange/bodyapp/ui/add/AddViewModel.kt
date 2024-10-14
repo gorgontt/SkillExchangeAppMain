@@ -6,8 +6,20 @@ import androidx.lifecycle.ViewModel
 
 class AddViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+    val words: MutableLiveData<MutableList<String>> = MutableLiveData(mutableListOf())
+
+    fun addWord(word: String) {
+        val currentWords = words.value ?: mutableListOf()
+        currentWords.add(word)
+        words.value = currentWords
     }
-    val text: LiveData<String> = _text
+
+
+    val mySkills: MutableLiveData<MutableList<String>> = MutableLiveData(mutableListOf())
+
+    fun addMySkills(mySkill: String) {
+        val currentMySkills = mySkills.value ?: mutableListOf()
+        currentMySkills.add(mySkill)
+        mySkills.value = currentMySkills
+    }
 }
