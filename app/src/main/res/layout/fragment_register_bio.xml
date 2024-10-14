@@ -278,7 +278,7 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/progress_Bar"
+            android:id="@+id/progress_Bar_regBio"
             style="?android:attr/progressBarStyle"
             android:layout_width="200dp"
             android:layout_height="wrap_content"

@@ -50,6 +50,9 @@ class RegisterFragment : Fragment() {
             }else if (password != repeatPass){
                 Toast.makeText(requireContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show()
 
+            } else if (!validPassword(password)) {
+                Toast.makeText(requireContext(), "Пароль должен содержать не менее 6 символов, включая буквы и цифры", Toast.LENGTH_SHORT).show()
+
             } else {
                 progressBar?.visibility = View.VISIBLE
 
@@ -97,6 +100,13 @@ class RegisterFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun validPassword(password: String): Boolean{
+        if (password.length < 6){ return false }
+        val hasLetter = password.any { it.isLetter() }
+        val hasDigit = password.any { it.isDigit() }
+        return hasLetter && hasDigit
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {

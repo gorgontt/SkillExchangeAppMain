@@ -1,5 +1,6 @@
 package com.example.skillexchange
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -7,6 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.skillexchange.bodyapp.BottomNavActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -24,6 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         btnSignIn = findViewById(R.id.btn_signIn)
         btnSignUp = findViewById(R.id.btn_signUp)
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            startActivity(Intent(this, BottomNavActivity::class.java))
+            finish()
+            return
+        }
         
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
