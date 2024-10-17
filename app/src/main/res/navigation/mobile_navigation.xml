@@ -11,7 +11,7 @@
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
-    <fragment
+    <dialog
         android:id="@+id/navigation_dashboard"
         android:name="com.example.skillexchange.bodyapp.ui.add.AddFragment"
         android:label="@string/title_add"
