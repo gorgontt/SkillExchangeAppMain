@@ -1,50 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/two_rounded_corners">
+    android:id="@+id/frame_add_frag"
+    style="@style/BottomSheetStyle">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/two_rounded_corners">
+        style="@style/BottomSheetStyle"
+        android:background="@drawable/two_rounded_corners_white">
 
         <ImageView
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:src="@drawable/bottom_sheet_dialog_line"
             android:layout_gravity="center|top"
+            android:tint="@color/blueMain"
             android:layout_marginTop="15dp"
             android:scaleType="centerCrop"/>
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/createText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="5dp"
-                android:background="#00000000"
-                android:padding="8dp"
-                android:text="Создать"
-                android:textAlignment="viewStart"
-                android:textColor="@color/white"
-                android:textSize="25dp" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutVideo"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:id="@+id/create_post_bottomSheetDialog"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#00000000"
@@ -54,17 +36,18 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/add_icon"
-                android:background="#00000000"/>
+                android:src="@drawable/add_icon_post"
+                android:background="#00000000"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Пост"
+                android:text="Создать пост"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
                 android:background="#00000000"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"/>
 
         </LinearLayout>
@@ -73,4 +56,4 @@
 
 
 
-</FrameLayout>
+</LinearLayout>

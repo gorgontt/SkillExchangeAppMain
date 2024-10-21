@@ -7,6 +7,7 @@
     tools:context=".bodyapp.ui.add.PostFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/RegisterDialog"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,11 +18,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/RegisterDialog">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/RegisterDialog"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="#00000000">
 
                 <TextView
                     android:id="@+id/text_dashboard"
@@ -29,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="40dp"
+                    android:background="#00000000"
                     android:text="Выберите, чему хотите научиться"
                     android:textAlignment="center"
                     android:textSize="20sp"
@@ -44,6 +49,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="20dp"
                     android:orientation="vertical"
+                    android:background="#00000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_dashboard">
@@ -99,6 +105,7 @@
                     android:layout_marginTop="40dp"
                     android:text="Укажите свои навыки"
                     android:textAlignment="center"
+                    android:background="#00000000"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -111,6 +118,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="20dp"
                     android:orientation="vertical"
+                    android:background="#00000000"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -164,9 +172,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="40dp"
-                    android:text="Укажите свои навыки"
+                    android:text="Расскажите о себе"
                     android:textAlignment="center"
                     android:textSize="20sp"
+                    android:background="#00000000"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
@@ -205,9 +214,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="40dp"
-            android:text="Опубликовать"
+            android:text="Создать"
             android:textAllCaps="false"
             android:textSize="16sp"
+            style="@style/ButtonStyle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,4 +27,9 @@
         android:name="com.example.skillexchange.bodyapp.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.example.skillexchange.bodyapp.ui.search.FilterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" />
 </navigation>
