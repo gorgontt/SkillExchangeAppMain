@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import com.example.skillexchange.R
 import com.example.skillexchange.databinding.FragmentSearchBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class SearchFragment : Fragment() {
 
@@ -30,6 +31,7 @@ class SearchFragment : Fragment() {
         val root: View = binding.root
 
         binding.filterIvSearchFrag.setOnClickListener {
+
             openNewFragment()
         }
 
