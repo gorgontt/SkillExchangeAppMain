@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SkillExchange" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.SkillExchange" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blueMain</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -17,68 +17,68 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="Background">
-        <item name="android:background">@color/blueDark</item>
-    </style>
+<!--    <style name="Background">-->
+<!--        <item name="android:background">@color/blueDark</item>-->
+<!--    </style>-->
 
-    <style name="ButtonStyle" parent="@android:style/Widget.Button">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textStyle">italic</item>
-        <item name="android:background">@drawable/button_corners</item>
-        <item name="android:gravity">center</item>
-    </style>
+<!--    <style name="ButtonStyle" parent="@android:style/Widget.Button">-->
+<!--        <item name="android:layout_width">fill_parent</item>-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--        <item name="android:textSize">15sp</item>-->
+<!--        <item name="android:textStyle">italic</item>-->
+<!--        <item name="android:background">@drawable/button_corners</item>-->
+<!--        <item name="android:gravity">center</item>-->
+<!--    </style>-->
 
-    <style name="RegisterDialog">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:background">@drawable/two_rounded_corners_dark</item>
-        <item name="android:gravity">center</item>
-    </style>
+<!--    <style name="RegisterDialog">-->
+<!--        <item name="android:layout_width">fill_parent</item>-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--        <item name="android:textSize">15sp</item>-->
+<!--        <item name="android:background">@drawable/two_rounded_corners_dark</item>-->
+<!--        <item name="android:gravity">center</item>-->
+<!--    </style>-->
 
-    <style name="EditTextStyle">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:padding">20dp</item>
-        <item name="android:background">@drawable/rounded_corners_ed_text_dark</item>
-    </style>
+<!--    <style name="EditTextStyle">-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--        <item name="android:textColorHint">@color/white</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--        <item name="android:padding">20dp</item>-->
+<!--        <item name="android:background">@drawable/rounded_corners_ed_text_dark</item>-->
+<!--    </style>-->
 
-    <style name="ArrowIconGoStyle">
-        <item name="android:tint">@color/yellowLight</item>
-    </style>
+<!--    <style name="ArrowIconGoStyle">-->
+<!--        <item name="android:tint">@color/yellowLight</item>-->
+<!--    </style>-->
 
-    <style name="TextColor">
-        <item name="android:textColor">@color/white</item>
-    </style>
+<!--    <style name="TextColor">-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--    </style>-->
 
-    <style name="RegisterBioStyle">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="android:background">@drawable/two_corners_right_dark_version</item>
-    </style>
+<!--    <style name="RegisterBioStyle">-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--        <item name="android:textColorHint">@color/white</item>-->
+<!--        <item name="android:background">@drawable/two_corners_right_dark_version</item>-->
+<!--    </style>-->
 
-    <style name="GenderButton">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/button_stroke_radius_dark</item>
-    </style>
+<!--    <style name="GenderButton">-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--        <item name="android:background">@drawable/button_stroke_radius_dark</item>-->
+<!--    </style>-->
 
-    <style name="SearchEditText">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:background">@drawable/rounded_corners_ed_text_dark</item>
-    </style>
+<!--    <style name="SearchEditText">-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--        <item name="android:textColorHint">@color/white</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--        <item name="android:background">@drawable/rounded_corners_ed_text_dark</item>-->
+<!--    </style>-->
 
-    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/two_rounded_corners_dark</item>
-    </style>
-    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:backgroundDimAmount">0.5</item> <!-- измените значение от 0.0 до 1.0 для настройки затемнения -->
-    </style>
+<!--    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">-->
+<!--        <item name="android:background">@drawable/two_rounded_corners_dark</item>-->
+<!--    </style>-->
+<!--    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">-->
+<!--        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>-->
+<!--        <item name="android:backgroundDimEnabled">true</item>-->
+<!--        <item name="android:backgroundDimAmount">0.5</item> &lt;!&ndash; измените значение от 0.0 до 1.0 для настройки затемнения &ndash;&gt;-->
+<!--    </style>-->
 
 </resources>

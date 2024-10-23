@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="30dp">
 
     <TextView
-        android:id="@+id/rv_header_new_skills"
+        android:id="@+id/rv_main_header_new_skills"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Header"
-        android:textSize="18dp"
+        android:text="MainHeader"
+        android:textColor="@color/blueMain"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

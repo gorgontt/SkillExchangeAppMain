@@ -67,7 +67,6 @@
 
 
         <LinearLayout
-            style="@style/RegisterDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -80,7 +79,6 @@
 
             <EditText
                 android:id="@+id/email"
-                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -92,7 +90,6 @@
 
             <EditText
                 android:id="@+id/password"
-                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -103,7 +100,6 @@
 
             <EditText
                 android:id="@+id/repeat_password"
-                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -134,7 +130,6 @@
 
                 <ImageView
                     android:id="@+id/go_btn"
-                    style="@style/ArrowIconGoStyle"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:layout_marginEnd="25dp"

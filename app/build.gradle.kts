@@ -46,7 +46,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    //implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -66,4 +66,11 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.firebase.firestore)
     implementation("com.google.firebase:firebase-auth")
+
+    //implementation ("com.android.support:design:29.0.0")
+//    implementation ("com.android.support:appcompat-v7:28.0.0-alpha3")
+    //implementation ("com.android.support.constraint:constraint-layout:1.1.1")
+    implementation ("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation ("com.google.android.material:material:1.0.0")
+
 }

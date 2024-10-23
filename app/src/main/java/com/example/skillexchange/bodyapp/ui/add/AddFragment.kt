@@ -25,7 +25,8 @@ class AddFragment : BottomSheetDialogFragment() {
         val root: View = binding.root
 
         binding.createPostBottomSheetDialog.setOnClickListener {
-            val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+            //val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+            val bottomSheetDialog = BottomSheetDialog(requireContext())
             val view = layoutInflater.inflate(R.layout.fragment_post, null)
             bottomSheetDialog.setContentView(view)
             bottomSheetDialog.show()

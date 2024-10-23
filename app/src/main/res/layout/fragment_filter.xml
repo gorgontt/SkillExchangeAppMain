@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/filter_frame"
-    style="@style/Background"
     tools:context=".bodyapp.ui.search.FilterFragment">
 
     <ScrollView
@@ -78,7 +77,6 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/materialButton"
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="английский язык"
@@ -89,7 +87,6 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/materialButton2"
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -100,7 +97,6 @@
                     app:layout_constraintTop_toTopOf="@+id/materialButton" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -112,7 +108,6 @@
                     app:layout_constraintTop_toTopOf="@+id/materialButton2" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -145,7 +140,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/GenderButton"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -155,7 +150,7 @@
                     android:textAllCaps="false"/>
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/GenderButton"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="мужской"
@@ -182,7 +177,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/EditTextStyle"
                     android:gravity="left"
                     android:orientation="horizontal">
 
@@ -204,7 +198,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/EditTextStyle"
                     android:gravity="right"
                     android:orientation="horizontal">
 
@@ -242,7 +235,6 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/materialButton11"
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="от 1 до 3 лет"
@@ -253,7 +245,6 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/materialButton221"
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -264,7 +255,6 @@
                     app:layout_constraintTop_toTopOf="@+id/materialButton11" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -276,7 +266,6 @@
                     app:layout_constraintTop_toTopOf="@+id/materialButton221" />
 
                 <com.google.android.material.button.MaterialButton
-                    style="@style/GenderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

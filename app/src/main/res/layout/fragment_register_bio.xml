@@ -67,7 +67,6 @@
 
 
         <LinearLayout
-            style="@style/RegisterDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|top"
@@ -81,7 +80,6 @@
 
             <EditText
                 android:id="@+id/username_edT_regbio"
-                style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Имя"
@@ -99,7 +97,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextStyle"
                 android:layout_marginBottom="15dp"
                 android:clickable="false"
                 android:layout_marginLeft="20dp"
@@ -141,7 +138,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextStyle"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
@@ -169,7 +165,6 @@
 
                     <TextView
                         android:id="@+id/female_btn_regbio"
-                        style="@style/GenderButton"
                         android:layout_width="91dp"
                         android:layout_height="32dp"
                         android:gravity="center"
@@ -179,7 +174,6 @@
 
                     <TextView
                         android:id="@+id/male_btn_regbio"
-                        style="@style/GenderButton"
                         android:layout_width="91dp"
                         android:layout_height="32dp"
                         android:layout_marginLeft="15dp"
@@ -197,7 +191,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/EditTextStyle"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -235,7 +228,6 @@
                 android:layout_marginTop="5dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    style="@style/EditTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -260,7 +252,6 @@
 
                 <ImageView
                     android:id="@+id/arrow_btn_go_regbio"
-                    style="@style/ArrowIconGoStyle"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:layout_gravity="bottom|right"

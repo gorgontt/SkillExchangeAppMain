@@ -13,6 +13,12 @@ class NewSkillsBottomSheetAdapter(private val items: List<ListItem>) : RecyclerV
     // Список для хранения выбранных позиций
     private val selectedPositions = mutableSetOf<Int>()
 
+    inner class MainHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(item: ListItem.MainHeaderItem) {
+            val textView = itemView.findViewById<TextView>(R.id.rv_main_header_new_skills)
+            textView.text = item.text
+        }
+    }
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ListItem.HeaderItem) {
             val textView = itemView.findViewById<TextView>(R.id.rv_header_new_skills)
@@ -26,7 +32,7 @@ class NewSkillsBottomSheetAdapter(private val items: List<ListItem>) : RecyclerV
             textView.text = item.text
             // Установка фона в зависимости от того, выбран элемент или нет
             itemView.isSelected = selectedPositions.contains(adapterPosition)
-            itemView.setBackgroundResource(if (itemView.isSelected) R.drawable.round_corners_blue else R.drawable.button_stroke_radius)
+            itemView.setBackgroundResource(if (itemView.isSelected) R.drawable.round_corners_blue else R.drawable.round_corners_light)
             textView.setTextColor(if (itemView.isSelected) Color.WHITE else Color.BLACK)
 
             // Обработка нажатия
@@ -43,18 +49,23 @@ class NewSkillsBottomSheetAdapter(private val items: List<ListItem>) : RecyclerV
 
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
-            is ListItem.HeaderItem -> 0
-            is ListItem.TextItem -> 1
+            is ListItem.MainHeaderItem -> 0
+            is ListItem.HeaderItem -> 1
+            is ListItem.TextItem -> 2
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            0 -> HeaderViewHolder(
+            0 -> MainHeaderViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.bottom_new_skills_rv_main_header, parent, false)
+            )
+            1 -> HeaderViewHolder(
                 LayoutInflater.from(parent.context)
                     .inflate(R.layout.bottom_new_skills_rv_header, parent, false)
             )
-            1 -> TextViewHolder(
+            2 -> TextViewHolder(
                 LayoutInflater.from(parent.context)
                     .inflate(R.layout.bottom_new_skills_filter_rv_items, parent, false)
             )
@@ -66,6 +77,7 @@ class NewSkillsBottomSheetAdapter(private val items: List<ListItem>) : RecyclerV
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = items[position]) {
+            is ListItem.MainHeaderItem -> (holder as MainHeaderViewHolder).bind(item)
             is ListItem.HeaderItem -> (holder as HeaderViewHolder).bind(item)
             is ListItem.TextItem -> (holder as TextViewHolder).bind(item)
         }
