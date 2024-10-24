@@ -77,7 +77,7 @@ class PostFragment : BottomSheetDialogFragment() {
         val textView = TextView(requireContext()).apply {
             text = newSkill
             setPadding(20, 10, 20, 10)
-            background = ContextCompat.getDrawable(requireContext(), R.drawable.button_corners_blue)
+            //background = ContextCompat.getDrawable(requireContext(), R.drawable.button_corners_blue)
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -94,7 +94,7 @@ class PostFragment : BottomSheetDialogFragment() {
         val textView = TextView(requireContext()).apply {
             text = mySkill
             setPadding(20, 10, 20, 10)
-            background = ContextCompat.getDrawable(requireContext(), R.drawable.button_corners_blue)
+            //background = ContextCompat.getDrawable(requireContext(), R.drawable.button_corners_blue)
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
