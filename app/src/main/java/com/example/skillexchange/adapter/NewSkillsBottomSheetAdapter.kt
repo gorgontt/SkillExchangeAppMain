@@ -32,7 +32,7 @@ class NewSkillsBottomSheetAdapter(private val items: List<ListItem>) : RecyclerV
             textView.text = item.text
             // Установка фона в зависимости от того, выбран элемент или нет
             itemView.isSelected = selectedPositions.contains(adapterPosition)
-            //itemView.setBackgroundResource(if (itemView.isSelected) R.drawable.round_corners_blue else R.drawable.round_corners_light)
+            itemView.setBackgroundResource(if (itemView.isSelected) R.drawable.items_new_skills_blue else R.drawable.items_skills_style_light)
             textView.setTextColor(if (itemView.isSelected) Color.WHITE else Color.BLACK)
 
             // Обработка нажатия

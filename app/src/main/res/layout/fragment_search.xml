@@ -29,17 +29,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/filter_iv_search_frag"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="left"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:background="#00000000"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/filter_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/filter_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/gray" />
 
         <LinearLayout
             android:id="@+id/ll_search_filter_results"

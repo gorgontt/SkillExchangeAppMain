@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/frame_add_frag"
-    >
+    android:background="#00FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/two_rounded_corners_white">
+        android:background="@drawable/bottom_sheet_dialog_style_dark"
+        style="@style/BottomSheetDialogTheme">
 
         <ImageView
             android:layout_width="50dp"

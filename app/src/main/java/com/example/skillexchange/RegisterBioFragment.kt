@@ -17,6 +17,7 @@ import android.widget.Toast
 import com.example.skillexchange.bodyapp.BottomNavActivity
 import com.example.skillexchange.databinding.FragmentRegisterBinding
 import com.example.skillexchange.databinding.FragmentRegisterBioBinding
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -27,6 +28,7 @@ class RegisterBioFragment : Fragment() {
     private lateinit var _binding: FragmentRegisterBioBinding
     private val binding get() = _binding!!
     private var db = Firebase.firestore
+    private var firebaseAuth = Firebase.auth
     private lateinit var storageRef: StorageReference
 
     private lateinit var etName: EditText
@@ -163,20 +165,25 @@ class RegisterBioFragment : Fragment() {
     }
 
     private fun saveUserDataToFirestore(userMap: HashMap<String, String?>) {
-        db.collection("users").add(userMap)
-            .addOnSuccessListener {
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null) {
+            // Используем uid пользователя в качестве ID документа
+            db.collection("users").document(currentUser.uid).set(userMap)
+                .addOnSuccessListener {
+                    Toast.makeText(activity, "Регистрация прошла успешно", Toast.LENGTH_LONG).show()
+                    progressBar?.visibility = View.INVISIBLE
 
-                Toast.makeText(activity, "Регистрация прошла успешно", Toast.LENGTH_LONG).show()
-                progressBar?.visibility = View.INVISIBLE
-
-                val intent = Intent(requireContext(), BottomNavActivity::class.java)
-                startActivity(intent)
-                requireActivity().finish()
-            }
-
-            .addOnFailureListener {
-                Toast.makeText(activity, "Ошибка сохранения данных", Toast.LENGTH_LONG).show()
-            }
+                    val intent = Intent(requireContext(), BottomNavActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(activity, "Ошибка сохранения данных", Toast.LENGTH_LONG).show()
+                }
+        } else {
+            Toast.makeText(activity, "Ошибка: пользователь не авторизован", Toast.LENGTH_SHORT).show()
+        }
     }
+
 
 }

@@ -16,9 +16,17 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-<!--    <style name="Background">-->
-<!--        <item name="android:background">@color/white</item>-->
-<!--    </style>-->
+    <style name="BottomMenuStyle">
+        <item name="android:background">@drawable/bottom_meny_style_light</item>
+    </style>
+
+    <style name="BottomSheetDialogStyle">
+        <item name="android:background">@drawable/bottom_sheet_dialog_style_light</item>
+    </style>
+
+    <style name="Background">
+        <item name="android:background">@color/white</item>
+    </style>
 
 <!--    <style name="ButtonStyle" parent="@android:style/Widget.Button">-->
 <!--        <item name="android:layout_width">fill_parent</item>-->
@@ -77,14 +85,14 @@
 <!--        <item name="android:background">@drawable/rounded_corners_ed_text</item>-->
 <!--    </style>-->
 
-<!--    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">-->
-<!--        <item name="android:background">@drawable/round_style</item>-->
-<!--    </style>-->
-<!--    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">-->
-<!--        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>-->
-<!--        <item name="android:backgroundDimEnabled">true</item>-->
-<!--        <item name="android:backgroundDimAmount">0.5</item> &lt;!&ndash; измените значение от 0.0 до 1.0 для настройки затемнения &ndash;&gt;-->
-<!--    </style>-->
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_dialog_style_light</item>
+    </style>
+    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.5</item> <!-- измените значение от 0.0 до 1.0 для настройки затемнения -->
+    </style>
 
 
 </resources>
