@@ -83,6 +83,16 @@ class NewSkillsBottomSheetAdapter(private val items: List<ListItem>) : RecyclerV
         }
     }
 
+    fun getSelectedSkills(): List<ListItem.TextItem> {
+        return selectedPositions.mapNotNull { position ->
+            if (items[position] is ListItem.TextItem) {
+                items[position] as ListItem.TextItem
+            } else {
+                null
+            }
+        }
+    }
+
     // Метод для получения всех выбранных позиций
     fun getSelectedPositions(): List<Int> {
         return selectedPositions.toList()

@@ -14,9 +14,14 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import com.example.skillexchange.adapter.ListItem
+import com.example.skillexchange.adapter.SkillsAdapter
 import com.example.skillexchange.bodyapp.BottomNavActivity
+import com.example.skillexchange.bodyapp.ui.add.PostViewModel
+import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
 import com.example.skillexchange.databinding.FragmentRegisterBinding
 import com.example.skillexchange.databinding.FragmentRegisterBioBinding
+import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,7 +29,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 
-class RegisterBioFragment : Fragment() {
+class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
     private lateinit var _binding: FragmentRegisterBioBinding
     private val binding get() = _binding!!
     private var db = Firebase.firestore
@@ -47,6 +52,8 @@ class RegisterBioFragment : Fragment() {
     private val PICK_IMAGE_REQUEST = 1
     private var imageUri: Uri? = null
 
+    private lateinit var skillsAdapter: SkillsAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,6 +74,17 @@ class RegisterBioFragment : Fragment() {
         btnPickPhoto = view.findViewById(R.id.pick_photo_regbio)
 
         progressBar = view.findViewById<ProgressBar>(R.id.progress_Bar_regBio)
+
+        skillsAdapter = SkillsAdapter(mutableListOf())
+        binding.recyclerviewRegBioFragment.adapter = skillsAdapter
+
+        binding.addMySkillsRegBioFragment.setOnClickListener {
+            if (isAdded && !isDetached) {
+                val skillsBottomSheet = SkillsBottomSheetDialog()
+                skillsBottomSheet.setTargetFragment(this, 1)
+                skillsBottomSheet.show(requireActivity().supportFragmentManager, "SkillsBottomSheet")
+            }
+        }
 
         btnPickPhoto.setOnClickListener {
             openGallery()
@@ -92,6 +110,13 @@ class RegisterBioFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onSkillsSelected(selectedSkills: List<ListItem.TextItem>) {
+        // Получаем текущие навыки и добавляем новые
+        val currentSkills = skillsAdapter.items.toMutableList()
+        currentSkills.addAll(selectedSkills)
+        skillsAdapter.updateSkills(currentSkills)  // Обновляем адаптер
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

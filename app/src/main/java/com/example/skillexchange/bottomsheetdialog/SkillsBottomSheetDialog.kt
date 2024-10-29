@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skillexchange.R
 import com.example.skillexchange.adapter.NewSkillsBottomSheetAdapter
 import com.example.skillexchange.adapter.NewSkillsRepository
+import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class SkillsBottomSheetDialog : BottomSheetDialogFragment() {
@@ -28,6 +30,12 @@ class SkillsBottomSheetDialog : BottomSheetDialogFragment() {
         newSkillsAdapter = NewSkillsBottomSheetAdapter(words)
         newSkillsRV.layoutManager = LinearLayoutManager(context)
         newSkillsRV.adapter = newSkillsAdapter
+
+        dialogView.findViewById<Button>(R.id.add_skills).setOnClickListener {
+            val selectedSkills = newSkillsAdapter.getSelectedSkills()  // Убедитесь, что метод вызывается без параметров
+            (targetFragment as? OnSkillsSelectedListener)?.onSkillsSelected(selectedSkills)
+            dismiss()
+        }
 
         return dialogView
     }

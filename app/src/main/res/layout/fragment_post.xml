@@ -19,8 +19,9 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="24dp"
+                android:fontFamily="@font/lora"
                 android:text="Чему вы хотите научиться?"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -28,22 +29,34 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_new_skills_postFragment"
-                android:clickable="true"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:src="@drawable/arrow_icon_goo"
-                android:tint="@color/grayDark"
+                android:backgroundTint="#E6E6E6"
+                android:baselineAlignBottom="false"
+                android:clickable="true"
+                android:src="@drawable/arrow_filter_icon"
+                android:tint="@color/black"
+                app:fabSize="mini"
+                app:layout_anchorGravity="end|bottom"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/skills_recyclerview_postFragment"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
-                android:textSize="60dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:spanCount="2" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
