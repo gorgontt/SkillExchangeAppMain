@@ -60,7 +60,9 @@
                     android:text="Укажите свои навыки"
                     android:layout_weight="1"
                     android:textSize="20dp"/>
+
                 <TextView
+                    android:id="@+id/my_skills_filterFragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Все"

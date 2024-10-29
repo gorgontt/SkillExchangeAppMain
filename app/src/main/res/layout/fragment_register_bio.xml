@@ -72,6 +72,7 @@
             android:gravity="center|top"
             android:orientation="vertical"
             android:clickable="false"
+            android:background="@drawable/two_rounded_corners_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -83,6 +84,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Имя"
+                android:textColor="@color/black"
+                android:background="@drawable/edit_text_white_style"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="20dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="30dp"
                 android:inputType="textCapWords"
@@ -99,6 +106,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:clickable="false"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/edit_text_white_style"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
@@ -108,6 +120,8 @@
                     android:layout_height="wrap_content"
                     android:background="#001C1A42"
                     android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lora"
                     android:text="Укажите свой возраст"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -138,6 +152,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/edit_text_white_style"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
@@ -148,6 +167,8 @@
                     android:layout_height="wrap_content"
                     android:background="#001C1A42"
                     android:text="Пол"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lora"
                     android:textSize="18dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -169,6 +190,7 @@
                         android:layout_height="32dp"
                         android:gravity="center"
                         android:text="женский"
+                        android:background="@drawable/button_stroke_radius_dark"
                         android:textAllCaps="false"
                         android:textSize="17dp" />
 
@@ -177,6 +199,7 @@
                         android:layout_width="91dp"
                         android:layout_height="32dp"
                         android:layout_marginLeft="15dp"
+                        android:background="@drawable/button_stroke_radius_dark"
                         android:gravity="center"
                         android:text="мужсккой"
                         android:textAllCaps="false"
@@ -191,6 +214,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/edit_text_white_style"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -203,6 +231,8 @@
                     android:background="#001C1A42"
                     android:text="Добавить фото профиля"
                     android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lora"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -212,6 +242,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#001C1A42"
+                    android:tint="@color/purple"
                     android:src="@drawable/add_icon_blue"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -257,6 +288,7 @@
                     android:layout_gravity="bottom|right"
                     android:layout_marginEnd="25dp"
                     android:background="#001C1A42"
+                    android:tint="@color/blueMain"
                     android:src="@drawable/arrow_icon_goo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

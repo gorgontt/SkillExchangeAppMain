@@ -63,7 +63,7 @@
         android:clickable="true"
         android:src="@drawable/settings_icon"
         app:fabSize="normal"
-        android:tint="@color/yellowLight"
+        android:tint="@color/yellow"
         android:backgroundTint="@color/blueMain"
         app:layout_anchor="@id/appbar_profile"
         app:layout_anchorGravity="end|bottom"

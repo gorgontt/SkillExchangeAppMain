@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.skillexchange.R
 import com.example.skillexchange.databinding.FragmentAddBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class AddFragment : BottomSheetDialogFragment() {
@@ -20,16 +19,17 @@ class AddFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         addViewModel = ViewModelProvider(this).get(AddViewModel::class.java)
-
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         binding.createPostBottomSheetDialog.setOnClickListener {
-            val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
-            //val bottomSheetDialog = BottomSheetDialog(requireContext())
-            val view = layoutInflater.inflate(R.layout.fragment_post, null)
-            bottomSheetDialog.setContentView(view)
-            bottomSheetDialog.show()
+            dismiss()
+            val newFragment = PostFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.search_frame, newFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         return root

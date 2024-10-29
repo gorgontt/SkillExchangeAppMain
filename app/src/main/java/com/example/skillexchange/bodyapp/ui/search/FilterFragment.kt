@@ -1,33 +1,17 @@
 package com.example.skillexchange.bodyapp.ui.search
 
-import android.content.Intent
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.skillexchange.MainActivity
-import com.example.skillexchange.R
-import com.example.skillexchange.adapter.ListItem
-import com.example.skillexchange.adapter.NewSkillsBottomSheetAdapter
-import com.example.skillexchange.adapter.NewSkillsRepository
-import com.example.skillexchange.bodyapp.BottomNavActivity
+import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
 import com.example.skillexchange.databinding.FragmentFilterBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.auth.FirebaseAuth
 
 class FilterFragment : Fragment() {
 
     private lateinit var _binding: FragmentFilterBinding
-    private lateinit var dialogNewSkills: BottomSheetDialog
-    private lateinit var newSkillsAdapter: NewSkillsBottomSheetAdapter
-    private lateinit var newSkillsRV: RecyclerView
-
-    private val newSkillsRepository = NewSkillsRepository()
     private val binding get() = _binding!!
 
     companion object {
@@ -50,7 +34,11 @@ class FilterFragment : Fragment() {
         val view = binding.root
 
         binding.tvOpenAllNewSkills.setOnClickListener {
-            bottomSheetDialogNewSkills()
+            SkillsBottomSheetDialog.newInstance().show(requireActivity().supportFragmentManager, "SkillsBottomSheet")
+        }
+
+        binding.mySkillsFilterFragment.setOnClickListener {
+            SkillsBottomSheetDialog.newInstance().show(requireActivity().supportFragmentManager, "SkillsBottomSheet")
         }
 
 
@@ -58,18 +46,18 @@ class FilterFragment : Fragment() {
         return view
     }
 
-    private fun bottomSheetDialogNewSkills(){
-        val dialogView = layoutInflater.inflate(R.layout.bottom_new_skills_filter, null)
-        dialogNewSkills = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme) // Используйте стандартный стиль
-        //dialogNewSkills = BottomSheetDialog(requireContext()) // Используйте стандартный стиль
-        dialogNewSkills.setContentView(dialogView)
-
-        newSkillsRV = dialogView.findViewById(R.id.bottomSheet_RV_new_skills)
-        val words = newSkillsRepository.getNewSkillsWords()
-        newSkillsAdapter = NewSkillsBottomSheetAdapter(words)
-        newSkillsRV.layoutManager = LinearLayoutManager(context)
-        newSkillsRV.adapter = newSkillsAdapter
-
-        dialogNewSkills.show()
-    }
+//    private fun bottomSheetDialogNewSkills(){
+//        val dialogView = layoutInflater.inflate(R.layout.bottom_new_skills_filter, null)
+//        dialogNewSkills = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme) // Используйте стандартный стиль
+//        //dialogNewSkills = BottomSheetDialog(requireContext()) // Используйте стандартный стиль
+//        dialogNewSkills.setContentView(dialogView)
+//
+//        newSkillsRV = dialogView.findViewById(R.id.bottomSheet_RV_new_skills)
+//        val words = newSkillsRepository.getNewSkillsWords()
+//        newSkillsAdapter = NewSkillsBottomSheetAdapter(words)
+//        newSkillsRV.layoutManager = LinearLayoutManager(context)
+//        newSkillsRV.adapter = newSkillsAdapter
+//
+//        dialogNewSkills.show()
+//    }
 }

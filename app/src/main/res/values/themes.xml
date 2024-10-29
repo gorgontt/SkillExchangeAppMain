@@ -26,7 +26,12 @@
 
     <style name="Background">
         <item name="android:background">@color/white</item>
-    </style>
+    </style>    <style name="EditTextStyle">
+    <item name="android:background">@drawable/edit_text_white_style</item>
+    <item name="android:padding">@drawable/edit_text_white_style</item>
+</style>
+
+
 
 <!--    <style name="ButtonStyle" parent="@android:style/Widget.Button">-->
 <!--        <item name="android:layout_width">fill_parent</item>-->
