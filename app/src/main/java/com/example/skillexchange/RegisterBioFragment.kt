@@ -158,17 +158,20 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
             Toast.makeText(activity, "Пожалуйста, выберите фото", Toast.LENGTH_SHORT).show()
             return
         }
-
         if (selectedGender == null) {
             Toast.makeText(activity, "Выберите пол", Toast.LENGTH_SHORT).show()
             return
         }
 
+        // Получаем текущие навыки из адаптера
+        val skills = skillsAdapter.items.filterIsInstance<ListItem.TextItem>().map { it.text }
+
         val userMap = hashMapOf(
             "name" to sEtName,
             "age" to sEtAge,
             "gender" to selectedGender,
-            "photoUrl" to "" // Временно пустая строка для URL фото
+            "photoUrl" to "", // Временно пустая строка для URL фото
+            "skills" to skills // Добавляем навыки в userMap
         )
 
         // Загружаем изображение в Firebase Storage
@@ -179,30 +182,25 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
                 fileRef.downloadUrl.addOnSuccessListener { uri ->
                     userMap["photoUrl"] = uri.toString() // Устанавливаем URL в userMap
                     saveUserDataToFirestore(userMap)
+                }.addOnFailureListener {
+                    Toast.makeText(activity, "Ошибка получения URL изображения", Toast.LENGTH_SHORT).show()
                 }
-                    .addOnFailureListener {
-                        Toast.makeText(activity, "Ошибка получения URL изображения", Toast.LENGTH_SHORT).show()
-                    }
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 Toast.makeText(activity, "Ошибка загрузки изображения", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun saveUserDataToFirestore(userMap: HashMap<String, String?>) {
+    private fun saveUserDataToFirestore(userMap: HashMap<String, Any?>) { // Измените тип на Any?
         val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
-            // Используем uid пользователя в качестве ID документа
             db.collection("users").document(currentUser.uid).set(userMap)
                 .addOnSuccessListener {
                     Toast.makeText(activity, "Регистрация прошла успешно", Toast.LENGTH_LONG).show()
                     progressBar?.visibility = View.INVISIBLE
-
                     val intent = Intent(requireContext(), BottomNavActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
-                }
-                .addOnFailureListener {
+                }.addOnFailureListener {
                     Toast.makeText(activity, "Ошибка сохранения данных", Toast.LENGTH_LONG).show()
                 }
         } else {
