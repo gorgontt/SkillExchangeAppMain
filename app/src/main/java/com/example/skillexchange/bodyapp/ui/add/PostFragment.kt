@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,7 @@ import com.example.skillexchange.databinding.FragmentPostBinding
 import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.example.skillexchange.interfaces.Skill
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -26,8 +28,9 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
     private lateinit var skillsAdapter: SkillsAdapter
     private lateinit var mySkillsAdapter: MySkillsAdapter
     private val mySkillsList: MutableList<Skill> = mutableListOf()
-    private var db = Firebase.firestore // Инициализируем Firestore
+    private var db = Firebase.firestore
     private var firebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var etDescription: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,9 +45,9 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
         _binding = FragmentPostBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        skillsAdapter = SkillsAdapter(mutableListOf())  // Измените на MutableList
-//        binding.skillsRecyclerviewPostFragment.layoutManager = LinearLayoutManager(context)
+        skillsAdapter = SkillsAdapter(mutableListOf())
         binding.skillsRecyclerviewPostFragment.adapter = skillsAdapter
+        etDescription = binding.descriptionPostFragment
 
         binding.addNewSkillsPostFragment.setOnClickListener {
             if (isAdded && !isDetached) {
@@ -58,14 +61,17 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
         binding.mySkillsRecyclerviewPostFragment.adapter = mySkillsAdapter
         loadUserSkills()
 
+        binding.publishButton.setOnClickListener {
+            loadPost()
+        }
+
         return view
     }
 
     override fun onSkillsSelected(selectedSkills: List<ListItem.TextItem>) {
-        // Получаем текущие навыки и добавляем новые
         val currentSkills = skillsAdapter.items.toMutableList()
         currentSkills.addAll(selectedSkills)
-        skillsAdapter.updateSkills(currentSkills)  // Обновляем адаптер
+        skillsAdapter.updateSkills(currentSkills)
     }
 
     companion object {
@@ -78,11 +84,10 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
             val userId = currentUser.uid
             db.collection("users").document(userId).get()
                 .addOnSuccessListener { document ->
-                    val skills = document.get("skills") as? List<String> // Получите массив навыков
+                    val skills = document.get("skills") as? List<String>
                     if (skills != null) {
                         mySkillsList.clear()
-                        // преобразуйте строки в объекты Skill и добавьте их в mySkillsList
-                        mySkillsList.addAll(skills.map { Skill(it) }) // Предположим, что у вас есть соответствующий конструктор
+                        mySkillsList.addAll(skills.map { Skill(it) })
                         mySkillsAdapter.notifyDataSetChanged()
                     }
                 }.addOnFailureListener {
@@ -90,4 +95,36 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
                 }
         }
     }
+
+    private fun loadPost(){
+        val description = etDescription.text.toString().trim()
+        //val selectedSkills = skillsAdapter.items.map { it.t } // предполагаем, что у вас есть свойство name у Skill
+        val selectedSkills = skillsAdapter.items.filterIsInstance<ListItem.TextItem>().map { it.text }
+
+        if (description.isEmpty() || selectedSkills.isEmpty()) {
+            Toast.makeText(activity, "Пожалуйста, заполните все поля.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Создаем объект для добавления в коллекцию "post"
+        val postMap = hashMapOf(
+            "description" to description,
+            "skills" to selectedSkills,
+            "userId" to firebaseAuth.currentUser?.uid,
+            "timestamp" to FieldValue.serverTimestamp() // добавляем временную метку
+        )
+
+        // Добавляем пост в коллекцию "post"
+        db.collection("post")
+            .add(postMap)
+            .addOnSuccessListener {
+                Toast.makeText(activity, "Пост успешно добавлен!", Toast.LENGTH_SHORT).show()
+                etDescription.text.clear() // очищаем поле после добавления
+                //skillsAdapter.clearSkills() // метод для очистки выбранных навыков, если такой существует
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(activity, "Ошибка: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
 }
+

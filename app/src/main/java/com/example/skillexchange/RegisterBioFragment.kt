@@ -70,7 +70,6 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
         btnMale = view.findViewById(R.id.male_btn_regbio)
         btnGo = view.findViewById(R.id.arrow_btn_go_regbio)
         btnPickPhoto = view.findViewById(R.id.pick_photo_regbio)
-
         progressBar = view.findViewById<ProgressBar>(R.id.progress_Bar_regBio)
 
         skillsAdapter = SkillsAdapter(mutableListOf())

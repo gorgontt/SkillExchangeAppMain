@@ -7,21 +7,8 @@
     android:id="@+id/search_frame"
     tools:context=".bodyapp.ui.search.SearchFragment">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--        <com.google.android.material.appbar.MaterialToolbar-->
-<!--            android:id="@+id/search_app_bar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            app:navigationIcon="@drawable/filter_icon"/>-->
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -33,9 +20,9 @@
             android:id="@+id/filter_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/filter_icon"
             android:layout_margin="20dp"
-            android:backgroundTint="@color/gray" />
+            android:backgroundTint="@color/gray"
+            android:src="@drawable/filter_icon" />
 
         <LinearLayout
             android:id="@+id/ll_search_filter_results"
@@ -45,6 +32,19 @@
             android:orientation="horizontal" />
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_post_search_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:spanCount="2"
+        android:orientation="vertical"
+        tools:listitem="@layout/list_item_search_fragment"/>
+
 
 
 
