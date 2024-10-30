@@ -17,9 +17,7 @@ import android.widget.Toast
 import com.example.skillexchange.adapter.ListItem
 import com.example.skillexchange.adapter.SkillsAdapter
 import com.example.skillexchange.bodyapp.BottomNavActivity
-import com.example.skillexchange.bodyapp.ui.add.PostViewModel
 import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
-import com.example.skillexchange.databinding.FragmentRegisterBinding
 import com.example.skillexchange.databinding.FragmentRegisterBioBinding
 import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.google.firebase.auth.ktx.auth
@@ -113,10 +111,9 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
     }
 
     override fun onSkillsSelected(selectedSkills: List<ListItem.TextItem>) {
-        // Получаем текущие навыки и добавляем новые
         val currentSkills = skillsAdapter.items.toMutableList()
         currentSkills.addAll(selectedSkills)
-        skillsAdapter.updateSkills(currentSkills)  // Обновляем адаптер
+        skillsAdapter.updateSkills(currentSkills)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -146,7 +143,7 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             imageUri = data.data
-            ivPhoto.setImageURI(imageUri) // Отображение выбранного изображения в ImageView
+            ivPhoto.setImageURI(imageUri)
         }
     }
 
@@ -163,22 +160,21 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
             return
         }
 
-        // Получаем текущие навыки из адаптера
+
         val skills = skillsAdapter.items.filterIsInstance<ListItem.TextItem>().map { it.text }
 
         val userMap = hashMapOf(
             "name" to sEtName,
             "age" to sEtAge,
             "gender" to selectedGender,
-            "photoUrl" to "", // Временно пустая строка для URL фото
-            "skills" to skills // Добавляем навыки в userMap
+            "photoUrl" to "",
+            "skills" to skills
         )
 
         // Загружаем изображение в Firebase Storage
         val fileRef = storageRef.child("$sEtName.jpg")
         fileRef.putFile(imageUri!!)
             .addOnSuccessListener {
-                // Получаем URL загруженного изображения
                 fileRef.downloadUrl.addOnSuccessListener { uri ->
                     userMap["photoUrl"] = uri.toString() // Устанавливаем URL в userMap
                     saveUserDataToFirestore(userMap)
@@ -190,7 +186,7 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
             }
     }
 
-    private fun saveUserDataToFirestore(userMap: HashMap<String, Any?>) { // Измените тип на Any?
+    private fun saveUserDataToFirestore(userMap: HashMap<String, Any?>) {
         val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
             db.collection("users").document(currentUser.uid).set(userMap)

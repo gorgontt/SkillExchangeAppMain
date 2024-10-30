@@ -3,6 +3,7 @@ package com.example.skillexchange.bodyapp.ui.profile
 import android.content.Intent
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.skillexchange.MainActivity
+import com.example.skillexchange.adapter.MySkillsAdapter
 import com.example.skillexchange.databinding.FragmentProfileBinding
+import com.example.skillexchange.interfaces.Skill
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -19,6 +22,8 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private lateinit var mySkillsAdapter: MySkillsAdapter
+    private val mySkillsList: MutableList<Skill> = mutableListOf()
 
     companion object {
         fun newInstance() = ProfileFragment()
@@ -50,8 +55,13 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        // Загрузка данных пользователя
+        mySkillsAdapter = MySkillsAdapter(mySkillsList)
+        binding.mySkillsProfileFragment.adapter = mySkillsAdapter
+
+        loadUserSkills()
         loadUserData()
+
+
 
         return root
     }
@@ -77,6 +87,25 @@ class ProfileFragment : Fragment() {
                 }
                 .addOnFailureListener {
                     Toast.makeText(activity, "Ошибка загрузки данных", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+
+    private fun loadUserSkills(){
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            db.collection("users").document(userId).get()
+                .addOnSuccessListener { document ->
+                    val skills = document.get("skills") as? List<String> // Получите массив навыков
+                    if (skills != null) {
+                        mySkillsList.clear()
+                        // преобразуйте строки в объекты Skill и добавьте их в mySkillsList
+                        mySkillsList.addAll(skills.map { Skill(it) }) // Предположим, что у вас есть соответствующий конструктор
+                        mySkillsAdapter.notifyDataSetChanged()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(activity, "Ошибка загрузки навыков", Toast.LENGTH_SHORT).show()
                 }
         }
     }
