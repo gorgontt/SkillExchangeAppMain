@@ -1,5 +1,6 @@
 package com.example.skillexchange.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ class MySkillsAdapter(private val skills: List<Skill>) : RecyclerView.Adapter<My
 
         fun bind(skill: Skill) {
             skillName.text = skill.name
+            //skillName.setTextColor(Color.WHITE)
+
         }
     }
 
