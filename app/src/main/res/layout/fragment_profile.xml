@@ -85,7 +85,7 @@
         android:src="@drawable/settings_icon"
         app:fabSize="normal"
         android:tint="@color/yellow"
-        android:backgroundTint="@color/blueMain"
+        android:backgroundTint="@color/purple"
         app:layout_anchor="@id/appbar_profile"
         app:layout_anchorGravity="end|bottom"
         android:layout_marginRight="30dp"/>

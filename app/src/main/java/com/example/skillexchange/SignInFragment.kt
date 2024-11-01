@@ -88,9 +88,7 @@ class SignInFragment : Fragment() {
         }
 
         binding.openRegisterFragment.setOnClickListener {
-
             val registerFragment = RegisterFragment()
-
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.frame_sign_in, registerFragment)
             transaction?.commit()

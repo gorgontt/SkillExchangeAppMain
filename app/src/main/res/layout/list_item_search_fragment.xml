@@ -2,8 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="age"
-            android:textSize="13dp"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/tv_userName_item_searchFrag"
             app:layout_constraintTop_toBottomOf="@+id/tv_userName_item_searchFrag" />
 
@@ -55,6 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            android:orientation="horizontal"
+            app:spanCount="2"
             app:layout_constraintStart_toStartOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -70,11 +76,24 @@
             app:layout_constraintTop_toBottomOf="@+id/my_skills_rv_searchFragment" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/new_skills_rv_listItemSerach"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            android:orientation="horizontal"
+            app:spanCount="2"
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/description_list_item_searchFRag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="description"
+            app:layout_constraintStart_toStartOf="@+id/new_skills_rv_listItemSerach"
+            app:layout_constraintTop_toBottomOf="@+id/new_skills_rv_listItemSerach" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,10 +1,10 @@
 package com.example.skillexchange.bodyapp.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.skillexchange.R
@@ -13,6 +13,7 @@ import com.example.skillexchange.databinding.FragmentSearchBinding
 import com.example.skillexchange.interfaces.UserRv
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 class SearchFragment : Fragment() {
@@ -47,6 +48,33 @@ class SearchFragment : Fragment() {
         }
 
 
+
+
+
+        Firebase.firestore.collection("post").get().addOnSuccessListener {
+
+            var tempList = ArrayList<UserRv>()
+            userList.clear()
+
+            for (i in it.documents){
+
+                var post: UserRv = i.toObject<UserRv>()!!
+                tempList.add(post)
+            }
+
+            for (i in tempList.indices.reversed()) {
+                userList.add(0, tempList[i])
+            }
+
+            //postList.addAll(tempList)
+            userAdapter.notifyDataSetChanged()
+        }
+
+
+
+
+
+
 //        val textView: TextView = binding.textHome
 //        searchViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
@@ -79,11 +107,11 @@ class SearchFragment : Fragment() {
                     // Уведомляем адаптер об изменениях в данных
                     userAdapter.notifyDataSetChanged()
                 } else {
-                    Log.d("SearchFragment", "No such document")
+                    Toast.makeText(requireContext(), "Неверный логин или пароль", Toast.LENGTH_LONG).show()
                 }
             }
             .addOnFailureListener { exception ->
-                Log.w("SearchFragment", "Get failed with ", exception)
+                Toast.makeText(requireContext(), "Неверный логин или пароль", Toast.LENGTH_LONG).show()
             }
     }
 

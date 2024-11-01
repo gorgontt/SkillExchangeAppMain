@@ -159,7 +159,6 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
             return
         }
 
-
         val skills = skillsAdapter.items.filterIsInstance<ListItem.TextItem>().map { it.text }
 
         val userMap = hashMapOf(

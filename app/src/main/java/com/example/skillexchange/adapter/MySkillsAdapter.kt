@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.skillexchange.R
 import com.example.skillexchange.interfaces.Skill
 
-class MySkillsAdapter(private val skills: List<Skill>) : RecyclerView.Adapter<MySkillsAdapter.SkillViewHolder>() {
+class MySkillsAdapter(val skills: List<Skill>) : RecyclerView.Adapter<MySkillsAdapter.SkillViewHolder>() {
 
     class SkillViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val skillName: TextView = itemView.findViewById(R.id.text_item_skill)

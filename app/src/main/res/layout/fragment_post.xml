@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/Background"
+    android:id="@+id/post_frame"
     tools:context=".bodyapp.ui.add.PostFragment">
 
     <ScrollView
