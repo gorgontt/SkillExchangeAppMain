@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skillexchange.R
 
-class SkillsAdapter(val items: MutableList<ListItem>) : RecyclerView.Adapter<SkillsAdapter.SkillsViewHolder>() {
+class SkillsAdapter(val items: MutableList<ListItem.TextItem>) : RecyclerView.Adapter<SkillsAdapter.SkillsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_skill, parent, false)
@@ -17,27 +17,21 @@ class SkillsAdapter(val items: MutableList<ListItem>) : RecyclerView.Adapter<Ski
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: SkillsViewHolder, position: Int) {
-        // Здесь связываем holder с данными из items
         val item = items[position]
         holder.bind(item)
     }
 
-    // Добавленный метод для обновления навыков
-    fun updateSkills(newSkills: List<ListItem>) {
-        items.clear()  // Очистите старые навыки
-        items.addAll(newSkills)  // Добавьте новые навыки
-        notifyDataSetChanged()  // Уведомите о изменениях
+    fun updateSkills(newSkills: List<ListItem.TextItem>) {
+        items.clear()
+        items.addAll(newSkills)
+        notifyDataSetChanged()
     }
 
-    // Объявляем внутренний класс ViewHolder
     class SkillsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textView: TextView = itemView.findViewById(R.id.text_item_skill)
 
-        fun bind(item: ListItem) {
-            // Убедитесь, что ListItem.TextItem содержит свойство text
-            if (item is ListItem.TextItem) {
-                textView.text = item.text
-            }
+        fun bind(item: ListItem.TextItem) {
+            textView.text = item.text
         }
     }
 }

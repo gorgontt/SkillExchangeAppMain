@@ -115,40 +115,28 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
                             val name = userDocument.getString("name") ?: "Unknown"
                             val age = userDocument.getString("age") ?: "Unknown"
 
-                            // Собираем список выбранных навыков
                             val selectedSkills = skillsAdapter.items.filterIsInstance<ListItem.TextItem>().map { it.text }
                             val mySkills = mySkillsAdapter.skills.filterIsInstance<Skill>().map { it.name }
 
-                            // Создаем объект поста с добавлением навыков
                             val post = UserRv(
                                 description = description,
                                 name = name,
                                 age = age,
-                                //newSkills = selectedSkills // Убедитесь, что это поле существует в вашем классе UserRv
+                                newSkills = selectedSkills,
+                                mySkills = mySkills
                             )
 
-                            // Сохраняем пост в коллекцию "post"
                             val postDocument = db.collection("post").document()
                             postDocument.set(post)
                                 .addOnSuccessListener {
+                                    Toast.makeText(requireContext(), "Пост успешно опубликован", Toast.LENGTH_SHORT).show()
+                                    val newFragment = SearchFragment()
+                                    val fragmentManager = requireActivity().supportFragmentManager
+                                    fragmentManager.beginTransaction()
+                                        .replace(R.id.search_frame, newFragment)
+                                        .addToBackStack(null)
+                                        .commit()
 
-                                    val skillsMap = hashMapOf("newSkills" to selectedSkills, "mySkills" to mySkills )
-                                    //val mySkillsMap = hashMapOf("mySkills" to mySkills)
-
-                                    postDocument.collection("skills").document(currentUser.uid).set(skillsMap) // Добавляем в подколлекцию "newSkills"
-                                        .addOnSuccessListener {
-                                            Toast.makeText(requireContext(), "Пост успешно опубликован", Toast.LENGTH_SHORT).show()
-                                            val newFragment = SearchFragment()
-                                            val fragmentManager = requireActivity().supportFragmentManager
-                                            fragmentManager.beginTransaction()
-                                                .replace(R.id.search_frame, newFragment)
-                                                .addToBackStack(null)
-                                                .commit()
-
-                                        }
-                                        .addOnFailureListener { e ->
-                                            Toast.makeText(requireContext(), "Ошибка при сохранении навыков", Toast.LENGTH_LONG).show()
-                                        }
                                 }
                                 .addOnFailureListener { e ->
                                     Toast.makeText(requireContext(), "Ошибка при публикации поста", Toast.LENGTH_LONG).show()

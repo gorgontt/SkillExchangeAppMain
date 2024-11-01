@@ -14,7 +14,7 @@
         android:padding="15dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView"
+            android:id="@+id/userImage_listItemSearchFrag"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@color/blueMain"
@@ -29,8 +29,8 @@
             android:text="name"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView"
-            app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+            app:layout_constraintStart_toEndOf="@+id/userImage_listItemSearchFrag"
+            app:layout_constraintTop_toTopOf="@+id/userImage_listItemSearchFrag" />
 
         <TextView
             android:id="@+id/tv_userAge_item_searchFrag"
@@ -49,18 +49,17 @@
             android:layout_marginTop="8dp"
             android:text="Мои навыки:"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/circleImageView"
-            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/userImage_listItemSearchFrag"
+            app:layout_constraintTop_toBottomOf="@+id/userImage_listItemSearchFrag" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_skills_rv_searchFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
-            app:spanCount="2"
             app:layout_constraintStart_toStartOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -71,7 +70,7 @@
             android:layout_marginTop="8dp"
             android:text="Хочу освоить:"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/my_skills_rv_searchFragment"
             app:layout_constraintTop_toBottomOf="@+id/my_skills_rv_searchFragment" />
 
@@ -80,24 +79,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
-            app:spanCount="2"
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="15sp"
+            android:text="Описание"
+            app:layout_constraintStart_toStartOf="@+id/new_skills_rv_listItemSerach"
+            app:layout_constraintTop_toBottomOf="@+id/new_skills_rv_listItemSerach" />
 
         <TextView
             android:id="@+id/description_list_item_searchFRag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="description"
-            app:layout_constraintStart_toStartOf="@+id/new_skills_rv_listItemSerach"
-            app:layout_constraintTop_toBottomOf="@+id/new_skills_rv_listItemSerach" />
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    
 
 </androidx.cardview.widget.CardView>

@@ -70,11 +70,6 @@ class SearchFragment : Fragment() {
             userAdapter.notifyDataSetChanged()
         }
 
-
-
-
-
-
 //        val textView: TextView = binding.textHome
 //        searchViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
