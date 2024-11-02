@@ -114,6 +114,7 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
                         if (userDocument.exists()) {
                             val name = userDocument.getString("name") ?: "Unknown"
                             val age = userDocument.getString("age") ?: "Unknown"
+                            val userPhoto = userDocument.getString("photoUrl") ?: "Unknown"
 
                             val selectedSkills = skillsAdapter.items.filterIsInstance<ListItem.TextItem>().map { it.text }
                             val mySkills = mySkillsAdapter.skills.filterIsInstance<Skill>().map { it.name }
@@ -123,7 +124,8 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
                                 name = name,
                                 age = age,
                                 newSkills = selectedSkills,
-                                mySkills = mySkills
+                                mySkills = mySkills,
+                                photoUrl = userPhoto
                             )
 
                             val postDocument = db.collection("post").document()

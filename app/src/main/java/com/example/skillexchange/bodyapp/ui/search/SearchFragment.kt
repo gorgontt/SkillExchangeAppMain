@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.skillexchange.R
@@ -21,7 +20,8 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private lateinit var userAdapter: SearchFragmentAdapter
-    private val userList: MutableList<UserRv> = mutableListOf()
+    private val userList = ArrayList<UserRv> ()
+    //private val userList: MutableList<UserRv> = mutableListOf()
     private var db = Firebase.firestore
     private var firebaseAuth = FirebaseAuth.getInstance()
 
@@ -35,17 +35,17 @@ class SearchFragment : Fragment() {
 
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        userAdapter = SearchFragmentAdapter(userList)
+        userAdapter = SearchFragmentAdapter(requireContext(), userList)
         binding.rvPostSearchFragment.adapter = userAdapter
 
         binding.filterFab.setOnClickListener {
             openNewFragment()
         }
 
-        val currentUser = firebaseAuth.currentUser
-        if (currentUser != null) {
-            fetchUserData(currentUser.uid)
-        }
+//        val currentUser = firebaseAuth.currentUser
+//        if (currentUser != null) {
+//            //fetchUserData(currentUser.uid)
+//        }
 
 
 
@@ -88,26 +88,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun fetchUserData(userId: String) {
-        // Получаем данные пользователя из Firestore
-        db.collection("users").document(userId).get()
-            .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val name = document.getString("name") ?: "Unknown"
-                    val age = document.getString("age") ?: "Unknown"
 
-                    // Создаем объект UserRv и добавляем его в список
-                    val currentUser = UserRv(name, age)
-                    userList.add(currentUser)
-
-                    // Уведомляем адаптер об изменениях в данных
-                    userAdapter.notifyDataSetChanged()
-                } else {
-                    Toast.makeText(requireContext(), "Неверный логин или пароль", Toast.LENGTH_LONG).show()
-                }
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Неверный логин или пароль", Toast.LENGTH_LONG).show()
-            }
     }
 
     override fun onDestroyView() {
