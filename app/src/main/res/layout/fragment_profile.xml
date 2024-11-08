@@ -73,6 +73,13 @@
                 android:layout_marginBottom="10dp"
                 tools:listitem="@layout/item_skill"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/profile_posts_fragmentProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"/>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -27,7 +27,7 @@ class AddFragment : BottomSheetDialogFragment() {
             val newFragment = PostFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             fragmentManager.beginTransaction()
-                .replace(R.id.search_frame, newFragment)
+                .replace(R.id.fragment_container_nav, newFragment)
                 .addToBackStack(null)
                 .commit()
         }

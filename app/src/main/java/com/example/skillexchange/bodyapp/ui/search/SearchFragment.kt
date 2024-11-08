@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.skillexchange.R
 import com.example.skillexchange.adapter.SearchFragmentAdapter
@@ -42,14 +43,11 @@ class SearchFragment : Fragment() {
             openNewFragment()
         }
 
-//        val currentUser = firebaseAuth.currentUser
-//        if (currentUser != null) {
-//            //fetchUserData(currentUser.uid)
-//        }
-
-
-
-
+        searchViewModel.userList.observe(viewLifecycleOwner, Observer { users ->
+            userList.clear()
+            userList.addAll(users)
+            userAdapter.notifyDataSetChanged()
+        })
 
         Firebase.firestore.collection("post").get().addOnSuccessListener {
 
@@ -87,9 +85,6 @@ class SearchFragment : Fragment() {
             .commit()
     }
 
-    private fun fetchUserData(userId: String) {
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

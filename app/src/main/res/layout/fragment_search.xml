@@ -8,7 +8,7 @@
     android:background="@color/gray"
     tools:context=".bodyapp.ui.search.SearchFragment">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,9 @@
             android:id="@+id/filter_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="5dp"
+            app:fabSize="mini"
+            android:layout_gravity="center|right"
             android:backgroundTint="@color/gray"
             android:src="@drawable/filter_icon" />
 
@@ -32,7 +34,7 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal" />
 
-    </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_post_search_fragment"
@@ -43,7 +45,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        tools:listitem="@layout/list_item_search_fragment"/>
+        tools:listitem="@layout/list_item_search_fragment"
+        android:layout_marginBottom="60dp"/>
 
 
 
