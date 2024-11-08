@@ -11,8 +11,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.skillexchange.adapter.MySkillsAdapter
 import com.example.skillexchange.bodyapp.ui.search.SearchViewModel
 import com.example.skillexchange.databinding.FragmentSettingsBinding
+import com.example.skillexchange.interfaces.Skill
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -29,6 +32,11 @@ class SettingsFragment : BottomSheetDialogFragment() {
     private val PICK_IMAGE_REQUEST = 1
     private lateinit var imageUri: Uri
 
+    private lateinit var mySkillsAdapter: MySkillsAdapter
+    private val mySkillsList: MutableList<Skill> = mutableListOf()
+
+
+
     companion object {
         fun newInstance() = SettingsFragment()
     }
@@ -41,6 +49,14 @@ class SettingsFragment : BottomSheetDialogFragment() {
         // TODO: Use the ViewModel
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bottomSheet = view.parent as View
+        val behavior = BottomSheetBehavior.from(bottomSheet)
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,10 +65,14 @@ class SettingsFragment : BottomSheetDialogFragment() {
         val root: View = binding.root
 
         loadUserData()
+        loadUserSkills()
 
         binding.editFab.setOnClickListener {
             openGallery()
         }
+
+        mySkillsAdapter = MySkillsAdapter(mySkillsList)
+        binding.mySkillsSettingsFragment.adapter = mySkillsAdapter
 
         return root
     }
@@ -66,8 +86,10 @@ class SettingsFragment : BottomSheetDialogFragment() {
                     if (document != null && document.exists()) {
                         val userName = document.getString("name")
                         val userPhotoUrl = document.getString("photoUrl")
+                        val userAge = document.getString("age")
 
                         binding.nameSettings.text = userName
+                        binding.ageSettingFragment.text = userAge
                         Glide.with(this)
                             .load(userPhotoUrl)
                             .into(binding.settingsImageView)
@@ -129,6 +151,24 @@ class SettingsFragment : BottomSheetDialogFragment() {
             .addOnFailureListener {
                 Toast.makeText(activity, "Ошибка обновления URL фотографии", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun loadUserSkills(){
+        val currentUser = firebaseAuth.currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            db.collection("users").document(userId).get()
+                .addOnSuccessListener { document ->
+                    val skills = document.get("skills") as? List<String>
+                    if (skills != null) {
+                        mySkillsList.clear()
+                        mySkillsList.addAll(skills.map { Skill(it) })
+                        mySkillsAdapter.notifyDataSetChanged()
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(activity, "Ошибка загрузки навыков", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
 

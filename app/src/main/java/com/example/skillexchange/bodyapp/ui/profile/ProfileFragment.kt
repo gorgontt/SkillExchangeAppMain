@@ -88,26 +88,25 @@ class ProfileFragment : Fragment() {
     }
 
     private fun loadUserPosts() {
-
         val currentUser = firebaseAuth.currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
-            db.collection("post").document(userId).get()
+            db.collection("post").whereEqualTo("userId", userId).get()
                 .addOnSuccessListener { documents ->
                     postList.clear()
-                        val post = documents.toObject(UserRv::class.java)
-                    if (post != null) {
-                        postList.add(post)
-                    }else{
-                        Toast.makeText(activity, "Ошибка загрузки поста", Toast.LENGTH_SHORT).show()
-                    }
+                    if (!documents.isEmpty) {
+                        for (document in documents) {
+                            val post = document.toObject(UserRv::class.java)
+                            postList.add(post)
+                        }
                         adapter.notifyDataSetChanged()
-
+                    } else {
+                        Toast.makeText(activity, "Нет постов для отображения", Toast.LENGTH_SHORT).show()
+                    }
                 }.addOnFailureListener {
-                    Toast.makeText(activity, "Ошибка загрузки навыков", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Ошибка загрузки постов", Toast.LENGTH_SHORT).show()
                 }
         }
-
     }
 
     private fun loadUserData() {

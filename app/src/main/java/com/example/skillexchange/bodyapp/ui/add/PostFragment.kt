@@ -19,6 +19,7 @@ import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.example.skillexchange.interfaces.Skill
 import com.example.skillexchange.interfaces.UserRv
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -125,7 +126,8 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
                                 age = age,
                                 newSkills = selectedSkills,
                                 mySkills = mySkills,
-                                photoUrl = userPhoto
+                                photoUrl = userPhoto,
+                                userId = Firebase.auth.currentUser!!.uid
                             )
 
                             val postDocument = db.collection("post").document()

@@ -7,4 +7,5 @@ data class UserRv(
     val photoUrl: String = "",
     val newSkills: List<String> = emptyList(),
     val mySkills: List<String> = emptyList(),
+    val userId: String = ""
 )
