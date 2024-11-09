@@ -1,4 +1,4 @@
-package com.example.skillexchange
+package com.example.skillexchange.registration
 
 import android.app.Activity
 import android.content.Intent
@@ -14,8 +14,9 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.example.skillexchange.adapter.ListItem
-import com.example.skillexchange.adapter.SkillsAdapter
+import com.example.skillexchange.models.ListItem
+import com.example.skillexchange.R
+import com.example.skillexchange.adapter.SelectedSkillsAdapter
 import com.example.skillexchange.bodyapp.BottomNavActivity
 import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
 import com.example.skillexchange.databinding.FragmentRegisterBioBinding
@@ -50,7 +51,7 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
     private val PICK_IMAGE_REQUEST = 1
     private var imageUri: Uri? = null
 
-    private lateinit var skillsAdapter: SkillsAdapter
+    private lateinit var skillsAdapter: SelectedSkillsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,7 +73,7 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
         btnPickPhoto = view.findViewById(R.id.pick_photo_regbio)
         progressBar = view.findViewById<ProgressBar>(R.id.progress_Bar_regBio)
 
-        skillsAdapter = SkillsAdapter(mutableListOf())
+        skillsAdapter = SelectedSkillsAdapter(mutableListOf())
         binding.recyclerviewRegBioFragment.adapter = skillsAdapter
 
         binding.addMySkillsRegBioFragment.setOnClickListener {

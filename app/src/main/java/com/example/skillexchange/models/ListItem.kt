@@ -1,4 +1,4 @@
-package com.example.skillexchange.adapter
+package com.example.skillexchange.models
 
 sealed class ListItem {
     data class MainHeaderItem(val text: String) : ListItem()

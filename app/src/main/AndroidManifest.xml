@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +16,13 @@
         android:theme="@style/Theme.SkillExchange"
         tools:targetApi="31">
         <activity
+            android:name=".bodyapp.ui.search.ContentActivity"
+            android:exported="false" />
+        <activity
             android:name=".bodyapp.BottomNavActivity"
             android:exported="false"
             android:label="@string/title_activity_bottom_nav"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

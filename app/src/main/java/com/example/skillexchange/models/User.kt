@@ -1,4 +1,4 @@
-package com.example.skillexchange.Models
+package com.example.skillexchange.models
 
 class User {
 

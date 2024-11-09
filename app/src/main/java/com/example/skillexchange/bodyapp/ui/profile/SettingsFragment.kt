@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.skillexchange.adapter.MySkillsAdapter
 import com.example.skillexchange.bodyapp.ui.search.SearchViewModel
 import com.example.skillexchange.databinding.FragmentSettingsBinding
-import com.example.skillexchange.interfaces.Skill
+import com.example.skillexchange.models.Skill
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth

@@ -1,4 +1,6 @@
-package com.example.skillexchange.interfaces
+package com.example.skillexchange.models
+
+import java.io.Serializable
 
 data class UserRv(
     val description: String = "",
@@ -8,4 +10,4 @@ data class UserRv(
     val newSkills: List<String> = emptyList(),
     val mySkills: List<String> = emptyList(),
     val userId: String = ""
-)
+): Serializable

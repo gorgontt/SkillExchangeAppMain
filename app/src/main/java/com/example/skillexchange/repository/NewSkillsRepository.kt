@@ -1,4 +1,6 @@
-package com.example.skillexchange.adapter
+package com.example.skillexchange.repository
+
+import com.example.skillexchange.models.ListItem
 
 class NewSkillsRepository {
     fun getNewSkillsWords(): List<ListItem> {

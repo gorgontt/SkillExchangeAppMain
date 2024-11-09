@@ -1,4 +1,4 @@
-package com.example.skillexchange
+package com.example.skillexchange.registration
 
 
 import android.content.Intent
@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.skillexchange.MainActivity
+import com.example.skillexchange.R
 import com.example.skillexchange.bodyapp.BottomNavActivity
 import com.example.skillexchange.databinding.FragmentSignInBinding
 import com.google.android.gms.tasks.OnCompleteListener

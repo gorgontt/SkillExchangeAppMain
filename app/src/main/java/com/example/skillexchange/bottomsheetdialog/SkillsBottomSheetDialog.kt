@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skillexchange.R
 import com.example.skillexchange.adapter.NewSkillsBottomSheetAdapter
-import com.example.skillexchange.adapter.NewSkillsRepository
+import com.example.skillexchange.repository.NewSkillsRepository
 import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 

@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.R
 
-class SkillsAdapter(val items: MutableList<ListItem.TextItem>) : RecyclerView.Adapter<SkillsAdapter.SkillsViewHolder>() {
+class SelectedSkillsAdapter(val items: MutableList<ListItem.TextItem>) : RecyclerView.Adapter<SelectedSkillsAdapter.SkillsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SkillsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_skill, parent, false)

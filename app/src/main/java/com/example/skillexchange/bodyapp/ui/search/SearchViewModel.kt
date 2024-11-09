@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.skillexchange.interfaces.UserRv
+import com.example.skillexchange.models.UserRv
 import com.google.firebase.firestore.CollectionReference
 
 class SearchViewModel : ViewModel() {

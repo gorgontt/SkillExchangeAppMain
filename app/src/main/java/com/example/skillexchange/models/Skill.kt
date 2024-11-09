@@ -1,4 +1,4 @@
-package com.example.skillexchange.interfaces
+package com.example.skillexchange.models
 
 data class Skill(
     val name: String = ""

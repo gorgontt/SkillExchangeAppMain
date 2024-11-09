@@ -9,15 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.skillexchange.R
-import com.example.skillexchange.adapter.ListItem
+import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.adapter.MySkillsAdapter
-import com.example.skillexchange.adapter.SkillsAdapter
+import com.example.skillexchange.adapter.SelectedSkillsAdapter
 import com.example.skillexchange.bodyapp.ui.search.SearchFragment
 import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
 import com.example.skillexchange.databinding.FragmentPostBinding
 import com.example.skillexchange.interfaces.OnSkillsSelectedListener
-import com.example.skillexchange.interfaces.Skill
-import com.example.skillexchange.interfaces.UserRv
+import com.example.skillexchange.models.Skill
+import com.example.skillexchange.models.UserRv
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -28,7 +28,7 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
     private lateinit var _binding: FragmentPostBinding
     private val binding get() = _binding!!
     private lateinit var postViewModel: PostViewModel
-    private lateinit var skillsAdapter: SkillsAdapter
+    private lateinit var skillsAdapter: SelectedSkillsAdapter
     private lateinit var mySkillsAdapter: MySkillsAdapter
     private val mySkillsList: MutableList<Skill> = mutableListOf()
     private var db = Firebase.firestore
@@ -48,7 +48,7 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
         _binding = FragmentPostBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        skillsAdapter = SkillsAdapter(mutableListOf())
+        skillsAdapter = SelectedSkillsAdapter(mutableListOf())
         binding.skillsRecyclerviewPostFragment.adapter = skillsAdapter
         etDescription = binding.descriptionPostFragment
 

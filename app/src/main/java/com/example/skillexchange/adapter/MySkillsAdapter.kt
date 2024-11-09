@@ -1,13 +1,12 @@
 package com.example.skillexchange.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skillexchange.R
-import com.example.skillexchange.interfaces.Skill
+import com.example.skillexchange.models.Skill
 
 class MySkillsAdapter(val skills: List<Skill>) : RecyclerView.Adapter<MySkillsAdapter.SkillViewHolder>() {
 

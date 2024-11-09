@@ -1,29 +1,20 @@
 package com.example.skillexchange.bodyapp.ui.profile
 
-import android.content.Intent
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.Toast
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
-import com.example.skillexchange.MainActivity
 import com.example.skillexchange.adapter.MySkillsAdapter
-import com.example.skillexchange.adapter.ProfilePostAdapter
-import com.example.skillexchange.adapter.SearchFragmentAdapter
+import com.example.skillexchange.adapter.MyPostAdapter
 import com.example.skillexchange.databinding.FragmentProfileBinding
-import com.example.skillexchange.interfaces.Skill
-import com.example.skillexchange.interfaces.UserRv
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.example.skillexchange.models.Skill
+import com.example.skillexchange.models.UserRv
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 class ProfileFragment : Fragment() {
@@ -34,7 +25,7 @@ class ProfileFragment : Fragment() {
     private val mySkillsList: MutableList<Skill> = mutableListOf()
 
     private var postList = ArrayList<UserRv>()
-    private lateinit var adapter: ProfilePostAdapter
+    private lateinit var adapter: MyPostAdapter
 
     private val viewModel: ProfileViewModel by viewModels()
     private var db = Firebase.firestore
@@ -47,7 +38,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        adapter = ProfilePostAdapter(requireContext(), postList)
+        adapter = MyPostAdapter(requireContext(), postList)
         binding.profilePostsFragmentProfile.adapter = adapter
 
         loadUserData()

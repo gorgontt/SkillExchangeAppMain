@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.databinding.ListItemSearchFragmentBinding
-import com.example.skillexchange.interfaces.Skill
-import com.example.skillexchange.interfaces.UserRv
+import com.example.skillexchange.models.Skill
+import com.example.skillexchange.models.UserRv
 
-class ProfilePostAdapter (var context: Context, var postList: ArrayList<UserRv>): RecyclerView.Adapter<ProfilePostAdapter.ViewHolder>() {
+class MyPostAdapter (var context: Context, var postList: ArrayList<UserRv>): RecyclerView.Adapter<MyPostAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: ListItemSearchFragmentBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -31,7 +32,7 @@ class ProfilePostAdapter (var context: Context, var postList: ArrayList<UserRv>)
         holder.binding.tvUserAgeItemSearchFrag.text = user.age
         holder.binding.descriptionListItemSearchFRag.text = user.description
         holder.binding.mySkillsRvSearchFragment.adapter = MySkillsAdapter(user.mySkills.map { Skill(it) })
-        holder.binding.newSkillsRvListItemSerach.adapter = SkillsAdapter(user.newSkills.map { ListItem.TextItem(it) }.toMutableList())
+        holder.binding.newSkillsRvListItemSerach.adapter = SelectedSkillsAdapter(user.newSkills.map { ListItem.TextItem(it) }.toMutableList())
 
 
     }
