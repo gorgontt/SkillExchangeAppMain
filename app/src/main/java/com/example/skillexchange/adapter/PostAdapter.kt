@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.skillexchange.databinding.ListItemSearchFragmentBinding
-import com.example.skillexchange.models.Skill
-import com.example.skillexchange.models.UserRv
 import android.content.Context
 import android.view.View
-import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.R
+import com.example.skillexchange.models.ListItem
+import com.example.skillexchange.models.Skill
+import com.example.skillexchange.models.UserRv
 
 class PostAdapter(val itemListener: PostItemListener, private val context: Context, var userData: ArrayList<UserRv>) : RecyclerView.Adapter<PostAdapter.SearchViewHolder>() {
 
@@ -26,7 +26,7 @@ class PostAdapter(val itemListener: PostItemListener, private val context: Conte
             newSkillsRvListItemSerach.adapter = SelectedSkillsAdapter(user.newSkills.map { ListItem.TextItem(it) }.toMutableList())
 
             itemView.setOnClickListener {
-                itemListener.onItemClick(user)
+                itemListener.onItemClick(user, user.mySkills, user.newSkills)
             }
         }
     }
@@ -43,7 +43,8 @@ class PostAdapter(val itemListener: PostItemListener, private val context: Conte
 
     override fun getItemCount() = userData.size
 
-    interface PostItemListener{
-        fun onItemClick(user: UserRv)
+    interface PostItemListener {
+        fun onItemClick(user: UserRv, skills: List<String>, newSkills: List<String>)
+        //fun onItemClick(user: UserRv)
     }
 }

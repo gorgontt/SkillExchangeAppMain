@@ -92,9 +92,11 @@ class SearchFragment : Fragment(), PostAdapter.PostItemListener {
         _binding = null
     }
 
-    override fun onItemClick(user: UserRv) {
-        val intent = Intent(requireContext(), ContentActivity::class.java)
+    override fun onItemClick(user: UserRv, skills: List<String>, newSkills: List<String>) {
+        val intent = Intent(context, ContentActivity::class.java)
         intent.putExtra("postItem", user)
-        activity?.startActivity(intent)
+        intent.putStringArrayListExtra("skills", ArrayList(user.mySkills))
+        intent.putStringArrayListExtra("newSkills", ArrayList(user.newSkills))
+        context?.startActivity(intent)
     }
 }
