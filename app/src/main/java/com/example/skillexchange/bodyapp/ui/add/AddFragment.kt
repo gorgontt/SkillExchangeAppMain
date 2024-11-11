@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.skillexchange.R
 import com.example.skillexchange.databinding.FragmentAddBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -23,13 +22,10 @@ class AddFragment : BottomSheetDialogFragment() {
         val root: View = binding.root
 
         binding.createPostBottomSheetDialog.setOnClickListener {
+            PostFragment().let {
+                it.show(parentFragmentManager, it.tag)
+            }
             dismiss()
-            val newFragment = PostFragment()
-            val fragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_nav, newFragment)
-                .addToBackStack(null)
-                .commit()
         }
 
         return root

@@ -6,24 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.skillexchange.R
 import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.adapter.MySkillsAdapter
 import com.example.skillexchange.adapter.SelectedSkillsAdapter
-import com.example.skillexchange.bodyapp.ui.search.SearchFragment
 import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
 import com.example.skillexchange.databinding.FragmentPostBinding
 import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.example.skillexchange.models.Skill
 import com.example.skillexchange.models.UserRv
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PostFragment : Fragment(), OnSkillsSelectedListener {
+class PostFragment : BottomSheetDialogFragment(), OnSkillsSelectedListener {
 
     private lateinit var _binding: FragmentPostBinding
     private val binding get() = _binding!!
@@ -38,6 +37,14 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bottomSheet = view.parent as View
+        val behavior = BottomSheetBehavior.from(bottomSheet)
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
     override fun onCreateView(
@@ -56,7 +63,7 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
             if (isAdded && !isDetached) {
                 val skillsBottomSheet = SkillsBottomSheetDialog()
                 skillsBottomSheet.setTargetFragment(this, 1)
-                skillsBottomSheet.show(requireActivity().supportFragmentManager, "SkillsBottomSheet")
+                skillsBottomSheet.show(parentFragmentManager, "SkillsBottomSheet")
             }
         }
 
@@ -65,11 +72,12 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
         loadUserSkills()
 
         binding.publishButton.setOnClickListener {
-            val transaction = fragmentManager?.beginTransaction()
-            transaction?.replace(R.id.post_frame, SearchFragment())
-            transaction?.commit()
+//            val transaction = fragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.post_frame, SearchFragment())
+//            transaction?.commit()
 
             loadPost()
+            dismiss()
         }
 
         return view
@@ -133,28 +141,31 @@ class PostFragment : Fragment(), OnSkillsSelectedListener {
                             val postDocument = db.collection("post").document()
                             postDocument.set(post)
                                 .addOnSuccessListener {
-                                    Toast.makeText(requireContext(), "Пост успешно опубликован", Toast.LENGTH_SHORT).show()
-                                    val newFragment = SearchFragment()
-                                    val fragmentManager = requireActivity().supportFragmentManager
-                                    fragmentManager.beginTransaction()
-                                        .replace(R.id.search_frame, newFragment)
-                                        .addToBackStack(null)
-                                        .commit()
-
+                                    context?.let {
+                                        Toast.makeText(it, "Пост успешно опубликован", Toast.LENGTH_SHORT).show()
+                                    }
                                 }
                                 .addOnFailureListener { e ->
-                                    Toast.makeText(requireContext(), "Ошибка при публикации поста", Toast.LENGTH_LONG).show()
+                                    context?.let {
+                                        Toast.makeText(it, "Ошибка при публикации поста", Toast.LENGTH_LONG).show()
+                                    }
                                 }
                         } else {
-                            Toast.makeText(requireContext(), "Пользователь не найден", Toast.LENGTH_LONG).show()
+                            context?.let {
+                                Toast.makeText(it, "Пользователь не найден", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(requireContext(), "Ошибка при загрузке данных пользователя", Toast.LENGTH_LONG).show()
+                        context?.let {
+                            Toast.makeText(it, "Ошибка при загрузке данных пользователя", Toast.LENGTH_LONG).show()
+                        }
                     }
             }
         } else {
-            Toast.makeText(requireContext(), "Описание не может быть пустым", Toast.LENGTH_LONG).show()
+            context?.let {
+                Toast.makeText(it, "Описание не может быть пустым", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
