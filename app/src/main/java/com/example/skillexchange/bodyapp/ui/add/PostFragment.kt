@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.skillexchange.R
 import com.example.skillexchange.models.ListItem
@@ -17,14 +18,12 @@ import com.example.skillexchange.databinding.FragmentPostBinding
 import com.example.skillexchange.interfaces.OnSkillsSelectedListener
 import com.example.skillexchange.models.Skill
 import com.example.skillexchange.models.UserRv
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PostFragment : BottomSheetDialogFragment(), OnSkillsSelectedListener {
+class PostFragment : Fragment(), OnSkillsSelectedListener {
 
     private lateinit var _binding: FragmentPostBinding
     private val binding get() = _binding!!
@@ -39,13 +38,6 @@ class PostFragment : BottomSheetDialogFragment(), OnSkillsSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val bottomSheet = view.parent as View
-        val behavior = BottomSheetBehavior.from(bottomSheet)
-        behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
     override fun onCreateView(
