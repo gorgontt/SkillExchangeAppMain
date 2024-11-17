@@ -16,6 +16,9 @@
         android:theme="@style/Theme.SkillExchange"
         tools:targetApi="31">
         <activity
+            android:name=".bodyapp.ui.messages.DialogActivity"
+            android:exported="false" />
+        <activity
             android:name=".bodyapp.ui.search.ContentActivity"
             android:exported="false" />
         <activity

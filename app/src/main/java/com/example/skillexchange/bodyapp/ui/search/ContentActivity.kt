@@ -1,21 +1,28 @@
 package com.example.skillexchange.bodyapp.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.skillexchange.models.UserRv
 import com.example.skillexchange.R
 import com.example.skillexchange.adapter.MySkillsAdapter
+import com.example.skillexchange.adapter.PostAdapter
 import com.example.skillexchange.adapter.SelectedSkillsAdapter
+import com.example.skillexchange.bodyapp.BottomNavActivity
+import com.example.skillexchange.bodyapp.ui.messages.DialogActivity
 import com.example.skillexchange.databinding.ActivityContentBinding
+import com.example.skillexchange.models.AndroidUtils
 import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.models.Skill
 
 class ContentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityContentBinding
+    private lateinit var utils: AndroidUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +44,9 @@ class ContentActivity : AppCompatActivity() {
         // Если передали скиллы, получим их откуда надо
         val skills = intent.getStringArrayListExtra("skills")
         val newSkills = intent.getStringArrayListExtra("newSkills")
+        utils = AndroidUtils()
 
         binding.apply {
-            //userIVCoontentActivity.setImageResource(item.photoUrl)
             Glide.with(this@ContentActivity).load(item.photoUrl).into(userIVCoontentActivity)
             nameContentActivity.text = item.name
             descriptionContentActivity.text = item.description
@@ -52,6 +59,14 @@ class ContentActivity : AppCompatActivity() {
             newSkills?.let {
                 rvNewSkillsContentActivity.adapter = SelectedSkillsAdapter(it.map { newSkill -> ListItem.TextItem(newSkill) }.toMutableList())
             }
+        }
+
+        binding.messageBtn.setOnClickListener {
+            val dialogIntent = Intent(this, DialogActivity::class.java).apply {
+                putExtra("username", item.name)
+                putExtra("photoUrl", item.photoUrl)
+            }
+            startActivity(dialogIntent)
         }
     }
 }

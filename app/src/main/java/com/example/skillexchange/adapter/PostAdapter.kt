@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.skillexchange.databinding.ListItemSearchFragmentBinding
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import com.example.skillexchange.R
+import com.example.skillexchange.bodyapp.BottomNavActivity
+import com.example.skillexchange.bodyapp.ui.messages.DialogActivity
 import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.models.Skill
 import com.example.skillexchange.models.UserRv
