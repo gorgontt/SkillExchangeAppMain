@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
+    //id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -66,6 +67,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation(libs.firebase.firestore)
     implementation("com.google.firebase:firebase-auth")
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
 
     //implementation ("com.android.support:design:29.0.0")
 //    implementation ("com.android.support:appcompat-v7:28.0.0-alpha3")
@@ -75,5 +77,9 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     implementation ("com.github.bumptech.glide:compiler:4.12.0")
+
+    // retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.6.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.6.0")
 
 }

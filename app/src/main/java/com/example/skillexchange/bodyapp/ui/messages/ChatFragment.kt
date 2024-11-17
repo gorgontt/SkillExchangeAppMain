@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
 import com.example.skillexchange.databinding.FragmentChatBinding
 
 class ChatFragment : Fragment() {
@@ -29,14 +27,8 @@ class ChatFragment : Fragment() {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        chatViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
-        binding.textNotifications.setOnClickListener {
-            SkillsBottomSheetDialog.newInstance().show(requireActivity().supportFragmentManager, "SkillsBottomSheet")
-        }
+
         return root
     }
 

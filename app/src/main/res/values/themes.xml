@@ -24,6 +24,12 @@
         <item name="android:background">@drawable/bottom_sheet_dialog_style_light</item>
     </style>
 
+    <style name="AppTheme.BottomSheet" parent="Theme.Design.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/blueMain</item>
+        <item name="colorAccent">@color/purple</item>
+    </style>
+
     <style name="Background">
         <item name="android:background">@color/gray</item>
     </style>    <style name="EditTextStyle">

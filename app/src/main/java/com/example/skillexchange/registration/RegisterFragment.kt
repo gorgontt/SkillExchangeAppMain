@@ -50,10 +50,12 @@ class RegisterFragment : Fragment() {
                     .show()
 
             }else if (password != repeatPass){
-                Toast.makeText(requireContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show()
+                binding.repeatPassword.setError("Пароли не совпадают")
+                //Toast.makeText(requireContext(), "Пароли не совпадают", Toast.LENGTH_SHORT).show()
 
             } else if (!validPassword(password)) {
-                Toast.makeText(requireContext(), "Пароль должен содержать не менее 6 символов, включая буквы и цифры", Toast.LENGTH_SHORT).show()
+                binding.password.setError("Пароль должен содержать не менее 6 символов, включая буквы и цифры")
+                //Toast.makeText(requireContext(), "Пароль должен содержать не менее 6 символов, включая буквы и цифры", Toast.LENGTH_SHORT).show()
 
             } else {
                 progressBar?.visibility = View.VISIBLE

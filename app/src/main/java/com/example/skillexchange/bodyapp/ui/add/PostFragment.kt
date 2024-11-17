@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.skillexchange.R
 import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.adapter.MySkillsAdapter
 import com.example.skillexchange.adapter.SelectedSkillsAdapter
@@ -37,13 +38,14 @@ class PostFragment : BottomSheetDialogFragment(), OnSkillsSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.AppTheme_BottomSheet) // Обратите внимание на правильный стиль
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bottomSheet = view.parent as View
-        val behavior = BottomSheetBehavior.from(bottomSheet)
+        val behavior = BottomSheetBehavior.from(view.parent as View)
+        behavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
@@ -77,7 +79,7 @@ class PostFragment : BottomSheetDialogFragment(), OnSkillsSelectedListener {
 //            transaction?.commit()
 
             loadPost()
-            dismiss()
+           // dismiss()
         }
 
         return view
@@ -143,6 +145,7 @@ class PostFragment : BottomSheetDialogFragment(), OnSkillsSelectedListener {
                                 .addOnSuccessListener {
                                     context?.let {
                                         Toast.makeText(it, "Пост успешно опубликован", Toast.LENGTH_SHORT).show()
+                                        dismiss()
                                     }
                                 }
                                 .addOnFailureListener { e ->

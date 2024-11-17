@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.skillexchange.MainActivity
 import com.example.skillexchange.adapter.MySkillsAdapter
+import com.example.skillexchange.bodyapp.BottomNavActivity
 import com.example.skillexchange.bodyapp.ui.search.SearchViewModel
 import com.example.skillexchange.databinding.FragmentSettingsBinding
 import com.example.skillexchange.models.Skill
@@ -69,6 +71,16 @@ class SettingsFragment : BottomSheetDialogFragment() {
 
         binding.editFab.setOnClickListener {
             openGallery()
+        }
+
+        binding.exitBtn.setOnClickListener {
+            val currentUser = firebaseAuth.currentUser
+            if (currentUser != null) {
+                firebaseAuth.signOut()
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
         }
 
         mySkillsAdapter = MySkillsAdapter(mySkillsList)
