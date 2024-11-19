@@ -1,8 +1,6 @@
 package com.example.skillexchange.bodyapp.ui.messages
 
 import android.os.Bundle
-import android.os.Message
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,18 +10,21 @@ import com.bumptech.glide.Glide
 import com.example.skillexchange.R
 import com.example.skillexchange.adapter.MessageAdapter
 import com.example.skillexchange.databinding.ActivityDialogBinding
+import com.example.skillexchange.models.Message
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
 import com.google.firebase.database.ktx.database
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class DialogActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDialogBinding
+    lateinit var adapter: MessageAdapter
+    lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +39,7 @@ class DialogActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
 
+        auth = Firebase.auth
         val username = intent.getStringExtra("username")
         val photoUrl = intent.getStringExtra("photoUrl")
         binding.userName.setText(username)
@@ -47,19 +49,35 @@ class DialogActivity : AppCompatActivity() {
         val myRef = db.getReference("messages")
 
         binding.sendBtn.setOnClickListener {
-            myRef.setValue(binding.edTMessage.text.toString())
+            myRef.child(myRef.push().key ?: "notNull").setValue(
+                Message(
+                    auth.currentUser?.displayName,
+                    binding.edTMessage.text.toString()
+                )
+            )
         }
         onChangeListener(myRef)
+        initRcView()
 
+    }
+
+    private fun initRcView() = with(binding){
+        adapter = MessageAdapter()
+        rvMessages.layoutManager = LinearLayoutManager(this@DialogActivity)
+        rvMessages.adapter = adapter
     }
 
     private fun onChangeListener(dRef: DatabaseReference){
         dRef.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                binding.apply {
-                    messageText.append("\n")
-                    messageText.append(snapshot.value.toString())
+                val list = ArrayList<Message>()
+                for (s in snapshot.children){
+
+                    val user = s.getValue(Message::class.java)
+                    if (user!= null)list.add(user)
+
                 }
+                adapter.submitList(list)
             }
 
             override fun onCancelled(error: DatabaseError) {

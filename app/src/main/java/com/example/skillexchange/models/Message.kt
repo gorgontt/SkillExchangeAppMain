@@ -1,4 +1,8 @@
 package com.example.skillexchange.models
 
-class Message {
-}
+data class Message (
+
+    val nameUser: String? = null,
+    val message: String? = null
+
+)
