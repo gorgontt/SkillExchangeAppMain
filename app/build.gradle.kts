@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -68,10 +69,8 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation("com.google.firebase:firebase-auth")
     implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation ("com.google.android.gms:play-services-auth:21.2.0")
 
-    //implementation ("com.android.support:design:29.0.0")
-//    implementation ("com.android.support:appcompat-v7:28.0.0-alpha3")
-    //implementation ("com.android.support.constraint:constraint-layout:1.1.1")
     implementation ("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation ("com.google.android.material:material:1.0.0")
 

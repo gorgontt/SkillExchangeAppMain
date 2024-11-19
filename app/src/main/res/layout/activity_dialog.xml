@@ -43,11 +43,21 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rv"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/toolbar"-->
+<!--        android:layout_above="@+id/bottom_layout"/>-->
+
+    <TextView
+        android:id="@+id/message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Hello"
         android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/bottom_layout"/>
+        android:layout_marginLeft="20dp"/>
 
     <RelativeLayout
         android:id="@+id/bottom_layout"
@@ -57,6 +67,7 @@
         android:background="@color/grayDark">
 
         <EditText
+            android:id="@+id/edT_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_white_style"

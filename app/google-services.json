@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "677917752407",
+    "firebase_url": "https://skillexchangeappmain-default-rtdb.firebaseio.com",
     "project_id": "skillexchangeappmain",
     "storage_bucket": "skillexchangeappmain.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.skillexchange"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "677917752407-ivpnq4i7sc0ajno97njkh32e8q5mj83v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skillexchange",
+            "certificate_hash": "957874118246e745c1b7012b99824049b68762ee"
+          }
+        },
+        {
+          "client_id": "677917752407-o3qmh959jjonno17ip3qvc7qlerq6fm5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDV-nc9baOkctv_arL25-4tqMJ9Gb_UfEE"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677917752407-o3qmh959jjonno17ip3qvc7qlerq6fm5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
