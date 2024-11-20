@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.R
@@ -27,26 +24,13 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-
 class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
     private lateinit var _binding: FragmentRegisterBioBinding
     private val binding get() = _binding!!
     private var db = Firebase.firestore
     private var firebaseAuth = Firebase.auth
     private lateinit var storageRef: StorageReference
-
-    private lateinit var etName: EditText
-    private lateinit var etAge: EditText
-
-    private lateinit var ivPhoto: ImageView
-    private lateinit var btnFemale: TextView
-    private lateinit var btnMale: TextView
-
-    private lateinit var btnGo: ImageView
-    private lateinit var btnPickPhoto: ImageView
-
     private var progressBar: ProgressBar? = null
-
     private var selectedGender: String? = null
     private val PICK_IMAGE_REQUEST = 1
     private var imageUri: Uri? = null
@@ -63,14 +47,6 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
         progressBar?.visibility = View.INVISIBLE
 
         storageRef = FirebaseStorage.getInstance().getReference("UsersPhotos")
-
-        etName = view.findViewById(R.id.username_edT_regbio)
-        etAge = view.findViewById(R.id.userage_edT_regbio)
-        ivPhoto = view.findViewById(R.id.userphoto_iv_regbio)
-        btnFemale = view.findViewById(R.id.female_btn_regbio)
-        btnMale = view.findViewById(R.id.male_btn_regbio)
-        btnGo = view.findViewById(R.id.arrow_btn_go_regbio)
-        btnPickPhoto = view.findViewById(R.id.pick_photo_regbio)
         progressBar = view.findViewById<ProgressBar>(R.id.progress_Bar_regBio)
 
         skillsAdapter = SelectedSkillsAdapter(mutableListOf())
@@ -83,31 +59,33 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
                 skillsBottomSheet.show(requireActivity().supportFragmentManager, "SkillsBottomSheet")
             }
         }
+        Buttons()
+        return view
+    }
 
-        btnPickPhoto.setOnClickListener {
+    private fun Buttons() = with(binding){
+        pickPhotoRegbio.setOnClickListener {
             openGallery()
         }
 
-        btnFemale.setOnClickListener {
+        femaleBtnRegbio.setOnClickListener {
             selectedGender = "female"
-            btnFemale.setBackgroundResource(R.drawable.button_black_corners)
-            btnFemale.setTextColor(Color.WHITE)
-            btnMale.setBackgroundResource(R.drawable.button_stroke_radius)
+            femaleBtnRegbio.setBackgroundResource(R.drawable.button_black_corners)
+            femaleBtnRegbio.setTextColor(Color.WHITE)
+            maleBtnRegbio.setBackgroundResource(R.drawable.button_stroke_radius)
         }
 
-        btnMale.setOnClickListener {
+        maleBtnRegbio.setOnClickListener {
             selectedGender = "male"
-            btnMale.setBackgroundResource(R.drawable.button_black_corners)
-            btnMale.setTextColor(Color.WHITE)
-            btnFemale.setBackgroundResource(R.drawable.button_stroke_radius)
+            maleBtnRegbio.setBackgroundResource(R.drawable.button_black_corners)
+            maleBtnRegbio.setTextColor(Color.WHITE)
+            femaleBtnRegbio.setBackgroundResource(R.drawable.button_stroke_radius)
         }
 
-        btnGo.setOnClickListener {
+        arrowBtnGoRegbio.setOnClickListener {
             progressBar?.visibility = View.VISIBLE
             uploadImageToFirebase()
         }
-
-        return view
     }
 
     override fun onSkillsSelected(selectedSkills: List<ListItem.TextItem>) {
@@ -119,9 +97,7 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val backBtn: View? = view?.findViewById(R.id.arrow_btn_back_regbio)
-
-        backBtn?.setOnClickListener {
+        binding.arrowBtnBackRegbio?.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(
                     R.id.frame_regbio,
@@ -143,13 +119,13 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
             imageUri = data.data
-            ivPhoto.setImageURI(imageUri)
+            binding.userphotoIvRegbio.setImageURI(imageUri)
         }
     }
 
     private fun uploadImageToFirebase() {
-        val sEtName = etName.text.toString().trim()
-        val sEtAge = etAge.text.toString().trim()
+        val sEtName = binding.usernameEdTRegbio.text.toString().trim()
+        val sEtAge = binding.userageEdTRegbio.text.toString().trim()
 
         if (imageUri == null) {
             Toast.makeText(activity, "Пожалуйста, выберите фото", Toast.LENGTH_SHORT).show()

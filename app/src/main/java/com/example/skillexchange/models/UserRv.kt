@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class UserRv(
     val description: String = "",
+    val userEmail: String = "",
     val name: String = "",
     val age: String = "",
     val photoUrl: String = "",

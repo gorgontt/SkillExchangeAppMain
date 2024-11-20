@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_photo_ChatRooms"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@color/purple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_name_ChatRooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="name"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/user_photo_ChatRooms"
+        app:layout_constraintTop_toTopOf="@+id/user_photo_ChatRooms" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="lastMessage"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/user_name_ChatRooms"
+        app:layout_constraintTop_toBottomOf="@+id/user_name_ChatRooms" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/status_online_iv_ChatRooms"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="#00ED0B"
+        app:layout_constraintBottom_toBottomOf="@+id/user_photo_ChatRooms"
+        app:layout_constraintEnd_toEndOf="@+id/user_photo_ChatRooms"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/user_photo_ChatRooms"
+        app:layout_constraintTop_toTopOf="@+id/user_photo_ChatRooms"
+        app:layout_constraintVertical_bias="0.94" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

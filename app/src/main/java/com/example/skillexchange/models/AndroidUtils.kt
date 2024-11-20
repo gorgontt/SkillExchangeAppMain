@@ -13,6 +13,7 @@ open class AndroidUtils {
     fun passUserModelAsIntent(intent: Intent, model: UserRv) {
         intent.putExtra("username", model.name)
         intent.putExtra("userId", model.userId)
+        intent.putExtra("userEmail", model.userEmail)
     }
 
 

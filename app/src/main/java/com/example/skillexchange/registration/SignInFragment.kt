@@ -1,7 +1,6 @@
 package com.example.skillexchange.registration
 
 
-import android.app.LauncherActivity
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -18,7 +17,6 @@ import com.example.skillexchange.MainActivity
 import com.example.skillexchange.R
 import com.example.skillexchange.bodyapp.BottomNavActivity
 import com.example.skillexchange.databinding.FragmentSignInBinding
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -36,8 +34,6 @@ class SignInFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private var progressBar: ProgressBar? = null
     lateinit var launcher: ActivityResultLauncher<Intent>
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +81,6 @@ class SignInFragment : Fragment() {
                         val intent = Intent(requireContext(), BottomNavActivity::class.java)
                         startActivity(intent)
                         requireActivity().finish()
-
 
                     } else {
 
