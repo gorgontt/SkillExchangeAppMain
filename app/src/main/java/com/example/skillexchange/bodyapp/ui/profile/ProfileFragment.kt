@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.skillexchange.adapter.MySkillsAdapter
 import com.example.skillexchange.adapter.MyPostAdapter
 import com.example.skillexchange.databinding.FragmentProfileBinding
 import com.example.skillexchange.models.Skill
 import com.example.skillexchange.models.UserRv
+import com.example.skillexchange.mvvm.ChatAppViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -27,7 +30,7 @@ class ProfileFragment : Fragment() {
     private var postList = ArrayList<UserRv>()
     private lateinit var adapter: MyPostAdapter
 
-    private val viewModel: ProfileViewModel by viewModels()
+    lateinit var viewModel: ChatAppViewModel
     private var db = Firebase.firestore
     private var firebaseAuth = FirebaseAuth.getInstance()
 
@@ -41,7 +44,7 @@ class ProfileFragment : Fragment() {
         adapter = MyPostAdapter(requireContext(), postList)
         binding.profilePostsFragmentProfile.adapter = adapter
 
-        loadUserData()
+        //loadUserData()
         loadUserSkills()
         loadUserPosts()
 
@@ -49,14 +52,6 @@ class ProfileFragment : Fragment() {
             val bottomSheet = SettingsFragment()
             bottomSheet.show(requireFragmentManager(), "BottomSheet")
             }
-
-//            val currentUser = firebaseAuth.currentUser
-//            if (currentUser != null) {
-//                firebaseAuth.signOut()
-//                val intent = Intent(activity, MainActivity::class.java)
-//                startActivity(intent)
-//                activity?.finish()
-//            }
 
         mySkillsAdapter = MySkillsAdapter(mySkillsList)
         binding.mySkillsProfileFragment.adapter = mySkillsAdapter
@@ -67,15 +62,14 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val bottomSheet = ProfileFragment()
-//        dialog.setOnShowListener { dialog ->
-//            val d = dialog as BottomSheetDialog
-//            val bottomSheet = d.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout
-//            val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-//            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-//
-//            bottomSheetBehavior.peekHeight = bottomSheet.height
-//        }
+        viewModel = ViewModelProvider(this).get(ChatAppViewModel::class.java)
+
+        viewModel.photoUrl.observe(viewLifecycleOwner, Observer {
+            Glide.with(requireContext()).load(it).into(binding.profileImageView)
+        })
+        viewModel.name.observe(viewLifecycleOwner, Observer {userName->
+            binding.collpasingToolbarProfile.title = userName
+        })
     }
 
     private fun loadUserPosts() {
@@ -100,29 +94,29 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun loadUserData() {
-        val currentUser = firebaseAuth.currentUser
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            db.collection("users").document(userId).get()
-                .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        val userName = document.getString("name")
-                        val userPhotoUrl = document.getString("photoUrl")
-
-                        binding.collpasingToolbarProfile.title = userName
-                        Glide.with(this)
-                            .load(userPhotoUrl)
-                            .into(binding.profileImageView)
-                    } else {
-                        Toast.makeText(activity, "Пользователь не найден", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                .addOnFailureListener {
-                    Toast.makeText(activity, "Ошибка загрузки данных", Toast.LENGTH_SHORT).show()
-                }
-        }
-    }
+//    private fun loadUserData() {
+//        val currentUser = firebaseAuth.currentUser
+//        if (currentUser != null) {
+//            val userId = currentUser.uid
+//            db.collection("users").document(userId).get()
+//                .addOnSuccessListener { document ->
+//                    if (document != null && document.exists()) {
+//                        val userName = document.getString("name")
+//                        val userPhotoUrl = document.getString("photoUrl")
+//
+//                        binding.collpasingToolbarProfile.title = userName
+//                        Glide.with(this)
+//                            .load(userPhotoUrl)
+//                            .into(binding.profileImageView)
+//                    } else {
+//                        Toast.makeText(activity, "Пользователь не найден", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//                .addOnFailureListener {
+//                    Toast.makeText(activity, "Ошибка загрузки данных", Toast.LENGTH_SHORT).show()
+//                }
+//        }
+//    }
 
     private fun loadUserSkills(){
         val currentUser = firebaseAuth.currentUser
