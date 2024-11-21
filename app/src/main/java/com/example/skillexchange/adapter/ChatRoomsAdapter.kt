@@ -28,7 +28,7 @@ class ChatRoomsAdapter: RecyclerView.Adapter<UserHolder>() {
 
         val users = listOfUsers[position]
 
-        val name = users.userName!!.split("\\s".toRegex())[0]
+        val name = users.name!!.split("\\s".toRegex())[0]
         holder.profileName.setText(name)
 
         if (users.status.equals("Online")){
@@ -39,7 +39,7 @@ class ChatRoomsAdapter: RecyclerView.Adapter<UserHolder>() {
             holder.statusImageView.setImageResource(R.drawable.arrow_icon_backk)
         }
 
-        Glide.with(holder.itemView.context).load(users.imageUrl).into(holder.imageProfile)
+        Glide.with(holder.itemView.context).load(users.photoUrl).into(holder.imageProfile)
 
         holder.itemView.setOnClickListener {
             listener?.onUserSelected(position, users)

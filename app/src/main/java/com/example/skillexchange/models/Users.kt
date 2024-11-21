@@ -4,10 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Users (
-    val imageUrl: String? = "",
+    val photoUrl: String? = "",
     val status: String? = "",
     val userId: String? = "",
-    val userName: String? = "",
+    val name: String? = "",
     val userEmail: String? = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
@@ -20,10 +20,10 @@ data class Users (
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(imageUrl)
+        parcel.writeString(photoUrl)
         parcel.writeString(status)
         parcel.writeString(userId)
-        parcel.writeString(userName)
+        parcel.writeString(name)
         parcel.writeString(userEmail)
     }
 

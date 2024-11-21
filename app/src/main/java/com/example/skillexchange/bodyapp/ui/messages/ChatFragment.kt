@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skillexchange.R
 import com.example.skillexchange.adapter.ChatRoomsAdapter
+import com.example.skillexchange.adapter.OnUserClickListener
 import com.example.skillexchange.databinding.FragmentChatBinding
+import com.example.skillexchange.models.Users
 import com.example.skillexchange.mvvm.ChatAppViewModel
 
-class ChatFragment : Fragment() {
+class ChatFragment : Fragment(), OnUserClickListener {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
@@ -42,12 +44,12 @@ class ChatFragment : Fragment() {
         chatRoomsRv = view.findViewById(R.id.chatRooms_rv)
         val layoutManagerUsers = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         chatRoomsRv.layoutManager = layoutManagerUsers
-        chatRoomsRv.adapter = chatRoomsAdapter // Установите адаптер здесь
+        chatRoomsRv.adapter = chatRoomsAdapter
 
         userViewModel.getUsers().observe(viewLifecycleOwner, Observer { userList ->
-            // Убедитесь, что userList не null
             if (userList != null) {
                 chatRoomsAdapter.setUserList(userList)
+                chatRoomsAdapter.setOnUserClickListener(this)
             }
         })
     }
@@ -55,5 +57,8 @@ class ChatFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onUserSelected(position: Int, users: Users) {
     }
 }
