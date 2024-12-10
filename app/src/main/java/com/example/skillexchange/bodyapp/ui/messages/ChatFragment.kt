@@ -66,11 +66,10 @@ class ChatFragment : Fragment(), OnUserClickListener {
 
     override fun onUserSelected(position: Int, users: Users) {
 
-        val action = ChatFragmentDirections.actionNavigationNotificationsToDialogActivity(users)
+        val action = ChatFragmentDirections.actionNavigationNotificationsToDialogFragment(users)
         view?.findNavController()?.navigate(action)
 
         Log.e("CHATFRAGMENT", "clicked on ${users.name}")
-        //Toast.makeText(requireContext(), "clicked on ${users.name}", Toast.LENGTH_SHORT).show()
 
     }
 }

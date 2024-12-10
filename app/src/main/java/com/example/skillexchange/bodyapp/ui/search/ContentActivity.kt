@@ -4,17 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.example.skillexchange.models.UserRv
 import com.example.skillexchange.R
 import com.example.skillexchange.adapter.MySkillsAdapter
-import com.example.skillexchange.adapter.PostAdapter
 import com.example.skillexchange.adapter.SelectedSkillsAdapter
-import com.example.skillexchange.bodyapp.BottomNavActivity
-import com.example.skillexchange.bodyapp.ui.messages.DialogActivity
 import com.example.skillexchange.databinding.ActivityContentBinding
 import com.example.skillexchange.models.AndroidUtils
 import com.example.skillexchange.models.ListItem
@@ -62,11 +58,11 @@ class ContentActivity : AppCompatActivity() {
         }
 
         binding.messageBtn.setOnClickListener {
-            val dialogIntent = Intent(this, DialogActivity::class.java).apply {
-                putExtra("username", item.name)
-                putExtra("photoUrl", item.photoUrl)
-            }
-            startActivity(dialogIntent)
+//            val dialogIntent = Intent(this, DialogActivity::class.java).apply {
+//                putExtra("username", item.name)
+//                putExtra("photoUrl", item.photoUrl)
+//            }
+//            startActivity(dialogIntent)
         }
     }
 }
