@@ -21,7 +21,14 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.skillexchange.bodyapp.ui.messages.ChatFragment"
         android:label="@string/title_messages"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_navigation_notifications_to_dialogActivity"
+            app:destination="@id/dialogActivity" />
+        <argument
+            android:name="users"
+            app:argType="com.example.skillexchange.models.Users" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.skillexchange.bodyapp.ui.profile.ProfileFragment"
@@ -32,4 +39,13 @@
         android:name="com.example.skillexchange.bodyapp.ui.search.FilterFragment"
         android:label="fragment_filter"
         tools:layout="@layout/fragment_filter" />
+    <activity
+        android:id="@+id/dialogActivity"
+        android:name="com.example.skillexchange.bodyapp.ui.messages.DialogActivity"
+        android:label="activity_dialog"
+        tools:layout="@layout/activity_dialog" >
+        <argument
+            android:name="users"
+            app:argType="com.example.skillexchange.models.Users" />
+    </activity>
 </navigation>

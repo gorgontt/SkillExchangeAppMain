@@ -11,6 +11,7 @@ import com.example.skillexchange.R
 import com.example.skillexchange.adapter.MessageAdapter
 import com.example.skillexchange.databinding.ActivityDialogBinding
 import com.example.skillexchange.models.Message
+import com.example.skillexchange.mvvm.ChatAppViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -23,8 +24,10 @@ import com.google.firebase.ktx.Firebase
 class DialogActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDialogBinding
+    //private lateinit var args: DialogActivityArgs
     lateinit var adapter: MessageAdapter
     lateinit var auth: FirebaseAuth
+    private lateinit var chatAppViewModel: ChatAppViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +41,8 @@ class DialogActivity : AppCompatActivity() {
             insets
         }
         supportActionBar?.hide()
+
+
 
         auth = Firebase.auth
         val username = intent.getStringExtra("username")

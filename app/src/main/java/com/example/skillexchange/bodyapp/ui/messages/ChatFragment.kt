@@ -1,12 +1,15 @@
 package com.example.skillexchange.bodyapp.ui.messages
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.skillexchange.R
@@ -48,10 +51,12 @@ class ChatFragment : Fragment(), OnUserClickListener {
 
         userViewModel.getUsers().observe(viewLifecycleOwner, Observer { userList ->
             if (userList != null) {
+
                 chatRoomsAdapter.setUserList(userList)
-                chatRoomsAdapter.setOnUserClickListener(this)
+                chatRoomsRv.adapter = chatRoomsAdapter
             }
         })
+        chatRoomsAdapter.setOnUserClickListener(this)
     }
 
     override fun onDestroyView() {
@@ -60,5 +65,12 @@ class ChatFragment : Fragment(), OnUserClickListener {
     }
 
     override fun onUserSelected(position: Int, users: Users) {
+
+        val action = ChatFragmentDirections.actionNavigationNotificationsToDialogActivity(users)
+        view?.findNavController()?.navigate(action)
+
+        Log.e("CHATFRAGMENT", "clicked on ${users.name}")
+        //Toast.makeText(requireContext(), "clicked on ${users.name}", Toast.LENGTH_SHORT).show()
+
     }
 }
