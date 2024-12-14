@@ -1,14 +1,22 @@
 package com.example.skillexchange.bodyapp.ui.messages
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
+import com.example.skillexchange.R
 import com.example.skillexchange.adapter.MessageAdapter
 import com.example.skillexchange.databinding.FragmentDialogBinding
+import com.example.skillexchange.models.FirebaseUtils
 import com.example.skillexchange.mvvm.ChatAppViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,6 +29,9 @@ class DialogFragment : Fragment() {
     private lateinit var adapter: MessageAdapter
     private lateinit var auth: FirebaseAuth
     private lateinit var chatAppViewModel: ChatAppViewModel
+    private lateinit var toolBar: Toolbar
+    private lateinit var tvUserName: TextView
+    private lateinit var tvStatus: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,12 +48,68 @@ class DialogFragment : Fragment() {
         args = DialogFragmentArgs.fromBundle(requireArguments())
         chatAppViewModel = ViewModelProvider(this).get(ChatAppViewModel::class.java)
 
+        binding.backBtn.setOnClickListener {
+            view.findNavController().navigate(R.id.action_dialogFragment_to_navigation_notifications)
+        }
+
+        toolBar = view.findViewById(R.id.toolbar)
+        tvStatus = view.findViewById(R.id.status)
+
+        Glide.with(requireContext()).load(args.users.photoUrl).into(binding.userPhoto)
+        tvStatus.setText(args.users.status)
+        binding.userName.setText(args.users.name)
+
         chatAppViewModel = ViewModelProvider(this).get(ChatAppViewModel::class.java)
         chatAppViewModel.getUsers().observe(viewLifecycleOwner, Observer { userList ->
             if (userList != null) {
 
             }
         })
+
+//        binding.sendBtn.setOnClickListener {
+//            chatAppViewModel.sendMessage(FirebaseUtils.getUiLoggedIn(), args.users.userId!!, args.users.name!!, args.users.photoUrl!!)
+//        }
+
+        binding.sendBtn.setOnClickListener {
+            val senderId = FirebaseUtils.getUiLoggedIn()
+            val receiverId = args.users.userId
+            val friendName = args.users.name
+            val friendImage = args.users.photoUrl
+
+            if (receiverId.isNullOrEmpty() || friendName.isNullOrEmpty() || friendImage.isNullOrEmpty()) {
+                Log.e("DialogFragment", "One of the user parameters is null or empty")
+                return@setOnClickListener
+            }
+
+            chatAppViewModel.sendMessage(senderId, receiverId, friendName, friendImage)
+        }
+//        binding.sendBtn.setOnClickListener {
+//            val senderId = FirebaseUtils.getUiLoggedIn()
+//            val receiverId = args.users.userId // Проверка, что receiverId не null
+//            val friendName = args.users.name
+//            val friendImage = args.users.photoUrl
+//            val messageText = chatAppViewModel.message.value
+//
+//            Log.d("DialogFragment", "senderId: $senderId, receiverId: $receiverId, friendName: $friendName, friendImage: $friendImage, messageText: $messageText")
+//
+//            if (receiverId != null) {
+//                if (senderId != null && friendName != null && friendImage != null && messageText != null) {
+//                    chatAppViewModel.sendMessage(senderId, receiverId, friendName, friendImage)
+//                } else {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "One of the message parameters is null",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                }
+//            } else {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Receiver ID is null, can't send message",
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            }
+//        }
     }
 
     override fun onDestroyView() {

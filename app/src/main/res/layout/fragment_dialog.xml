@@ -15,7 +15,7 @@
         tools:context=".bodyapp.ui.messages.DialogFragment">
 
 
-        <RelativeLayout
+        <Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,9 +49,20 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"/>
 
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="online"
+                android:layout_toRightOf="@+id/user_photo"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"/>
 
 
-        </RelativeLayout>
+
+        </Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_messages"

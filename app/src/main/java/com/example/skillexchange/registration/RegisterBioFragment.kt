@@ -143,7 +143,8 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
             "age" to sEtAge,
             "gender" to selectedGender,
             "photoUrl" to "",
-            "skills" to skills
+            "skills" to skills,
+            "userId" to firebaseAuth.currentUser?.uid
         )
 
         // Загружаем изображение в Firebase Storage
