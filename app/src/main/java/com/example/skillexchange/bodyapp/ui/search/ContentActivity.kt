@@ -1,6 +1,5 @@
 package com.example.skillexchange.bodyapp.ui.search
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,13 +11,11 @@ import com.example.skillexchange.R
 import com.example.skillexchange.adapter.MySkillsAdapter
 import com.example.skillexchange.adapter.SelectedSkillsAdapter
 import com.example.skillexchange.databinding.ActivityContentBinding
-import com.example.skillexchange.models.AndroidUtils
 import com.example.skillexchange.models.ListItem
 import com.example.skillexchange.models.Skill
 
 class ContentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityContentBinding
-    private lateinit var utils: AndroidUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +37,7 @@ class ContentActivity : AppCompatActivity() {
         // Если передали скиллы, получим их откуда надо
         val skills = intent.getStringArrayListExtra("skills")
         val newSkills = intent.getStringArrayListExtra("newSkills")
-        utils = AndroidUtils()
+
 
         binding.apply {
             Glide.with(this@ContentActivity).load(item.photoUrl).into(userIVCoontentActivity)

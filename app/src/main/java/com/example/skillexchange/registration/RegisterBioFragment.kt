@@ -18,6 +18,7 @@ import com.example.skillexchange.bodyapp.BottomNavActivity
 import com.example.skillexchange.bottomsheetdialog.SkillsBottomSheetDialog
 import com.example.skillexchange.databinding.FragmentRegisterBioBinding
 import com.example.skillexchange.interfaces.OnSkillsSelectedListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -29,6 +30,7 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
     private val binding get() = _binding!!
     private var db = Firebase.firestore
     private var firebaseAuth = Firebase.auth
+    private lateinit var auth : FirebaseAuth
     private lateinit var storageRef: StorageReference
     private var progressBar: ProgressBar? = null
     private var selectedGender: String? = null
@@ -45,6 +47,7 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
         val view = binding.root
 
         progressBar?.visibility = View.INVISIBLE
+
 
         storageRef = FirebaseStorage.getInstance().getReference("UsersPhotos")
         progressBar = view.findViewById<ProgressBar>(R.id.progress_Bar_regBio)
@@ -138,13 +141,17 @@ class RegisterBioFragment : Fragment(), OnSkillsSelectedListener {
 
         val skills = skillsAdapter.items.filterIsInstance<ListItem.TextItem>().map { it.text }
 
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+
         val userMap = hashMapOf(
             "name" to sEtName,
             "age" to sEtAge,
             "gender" to selectedGender,
             "photoUrl" to "",
             "skills" to skills,
-            "userId" to firebaseAuth.currentUser?.uid
+            "userId" to user!!.uid!!,
+            "status" to "default"
         )
 
         // Загружаем изображение в Firebase Storage

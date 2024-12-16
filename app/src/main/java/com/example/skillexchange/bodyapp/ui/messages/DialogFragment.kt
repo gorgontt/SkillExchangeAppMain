@@ -1,6 +1,8 @@
 package com.example.skillexchange.bodyapp.ui.messages
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -70,19 +72,58 @@ class DialogFragment : Fragment() {
 //            chatAppViewModel.sendMessage(FirebaseUtils.getUiLoggedIn(), args.users.userId!!, args.users.name!!, args.users.photoUrl!!)
 //        }
 
+//        binding.sendBtn.setOnClickListener {
+//            val senderId = FirebaseUtils.getUiLoggedIn()
+//            val receiverId = args.users.userId
+//            val friendName = args.users.name
+//            val friendImage = args.users.photoUrl
+//
+//            if (receiverId.isNullOrEmpty() || friendName.isNullOrEmpty() || friendImage.isNullOrEmpty()) {
+//                Log.e("DialogFragment", "One of the user parameters is null or empty")
+//                return@setOnClickListener
+//            }
+//
+//            chatAppViewModel.sendMessage(senderId, receiverId, friendName, friendImage)
+//        }
+
+        binding.edTMessage.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                chatAppViewModel.message.value = s.toString()
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
         binding.sendBtn.setOnClickListener {
             val senderId = FirebaseUtils.getUiLoggedIn()
             val receiverId = args.users.userId
             val friendName = args.users.name
             val friendImage = args.users.photoUrl
+            val messageText = chatAppViewModel.message.value // Получаем текст сообщения
 
-            if (receiverId.isNullOrEmpty() || friendName.isNullOrEmpty() || friendImage.isNullOrEmpty()) {
-                Log.e("DialogFragment", "One of the user parameters is null or empty")
-                return@setOnClickListener
+            Log.d("DialogFragment", "senderId: $senderId, receiverId: $receiverId, friendName: $friendName, friendImage: $friendImage, messageText: $messageText")
+
+            if (receiverId != null) {
+                if (!senderId.isNullOrEmpty() && !friendName.isNullOrEmpty() && !friendImage.isNullOrEmpty() && !messageText.isNullOrEmpty()) {
+                    chatAppViewModel.sendMessage(senderId, receiverId, friendName, friendImage)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "One of the message parameters is null or empty",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Receiver ID is null, can't send message",
+                    Toast.LENGTH_LONG
+                ).show()
             }
-
-            chatAppViewModel.sendMessage(senderId, receiverId, friendName, friendImage)
         }
+
 //        binding.sendBtn.setOnClickListener {
 //            val senderId = FirebaseUtils.getUiLoggedIn()
 //            val receiverId = args.users.userId // Проверка, что receiverId не null
