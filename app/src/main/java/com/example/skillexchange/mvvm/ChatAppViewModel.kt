@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.skillexchange.MyApplication
 import com.example.skillexchange.SharedPrefs
 import com.example.skillexchange.models.FirebaseUtils
+import com.example.skillexchange.models.Messages
 import com.example.skillexchange.models.Users
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,7 @@ class ChatAppViewModel: ViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
 
     val usersRepo = UsersRepo()
+    val messagesRepo = MessagesRepo()
 
     init {
         getCurrentUser()
@@ -119,9 +121,19 @@ class ChatAppViewModel: ViewModel() {
                     firestore.collection("Conversation$receiver")
                         .document(FirebaseUtils.getUiLoggedIn())
                         .update("message", message.value!!, "time", FirebaseUtils.getTime(), "person", name.value!!)
+
+                    if (task.isSuccessful){
+                        message.value = ""
+                    }
                 } else {
                     Log.e("ChatAppViewModel", "Failed to send message: ${task.exception?.message}")
                 }
             }
     }
+
+    fun getMessages(friendid: String) : LiveData<List<Messages>>{
+
+        return messagesRepo.getMessages(friendid)
+    }
+
 }
