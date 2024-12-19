@@ -20,7 +20,6 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="49dp"
             android:orientation="horizontal"
-            android:gravity="center|left"
             android:background="@color/blueMain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +143,7 @@
                     android:layout_height="55dp"
                     android:layout_marginEnd="25dp"
                     android:src="@drawable/arrow_icon_goo"
-                    android:tint="@color/black"
+                    android:tint="@color/blueMain"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -153,55 +152,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/lora"
+                    android:layout_marginBottom="50dp"
                     android:text="Регистрация"
-                    android:textColor="@color/purple"
+                    android:textColor="@color/yellow"
                     android:textSize="15dp"
+                    android:fontFamily="@font/lora"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-                <LinearLayout
+
+                <Button
                     android:id="@+id/google_signIn_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="32dp"
-                    android:background="@drawable/edit_text_white_style"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="15dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Google вход"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/open_registerFragment">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginRight="20dp"
-                        android:src="@drawable/googllle_icon" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/lora"
-                        android:gravity="center"
-                        android:text="Continue with Google"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <!--                    <de.hdodenhof.circleimageview.CircleImageView-->
-                    <!--                        android:layout_width="40dp"-->
-                    <!--                        android:layout_height="40dp"-->
-                    <!--                        android:layout_weight="1"-->
-                    <!--                        android:src="@drawable/gray_arrow" />-->
-
-
-                </LinearLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/open_registerFragment" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
