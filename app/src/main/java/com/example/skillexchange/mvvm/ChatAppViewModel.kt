@@ -33,6 +33,24 @@ class ChatAppViewModel: ViewModel() {
     }
 
     //get current user info
+//    fun getCurrentUser() = viewModelScope.launch(Dispatchers.IO ) {
+//
+//        val context = MyApplication.instance.applicationContext
+//        firestore.collection("users").document(FirebaseUtils.getUiLoggedIn()).addSnapshotListener { value, error ->
+//
+//            if (value!!.exists() && value != null){
+//                val users = value.toObject(Users::class.java)
+//                name.value = users?.name!!
+//                photoUrl.value = users?.photoUrl!!
+//
+//                val mysharedPrefs = SharedPrefs(context)
+//                mysharedPrefs.setValue("name", users.name!!)
+//            }
+//        }
+//
+//
+//    }
+
     fun getCurrentUser() = viewModelScope.launch(Dispatchers.IO ) {
 
         val context = MyApplication.instance.applicationContext
@@ -62,24 +80,8 @@ class ChatAppViewModel: ViewModel() {
     //send message
     fun sendMessage(sender: String?, receiver: String?, friendname: String?, friendimage: String?) = viewModelScope.launch(Dispatchers.IO) {
 
-        if (sender == null) {
-            Log.e("ChatAppViewModel", "sendMessage: sender is null")
-            return@launch
-        }
-        if (receiver == null) {
-            Log.e("ChatAppViewModel", "sendMessage: receiver is null")
-            return@launch
-        }
-        if (friendname == null) {
-            Log.e("ChatAppViewModel", "sendMessage: friendname is null")
-            return@launch
-        }
-        if (friendimage == null) {
-            Log.e("ChatAppViewModel", "sendMessage: friendimage is null")
-            return@launch
-        }
-        if (message.value == null) {
-            Log.e("ChatAppViewModel", "sendMessage: message.value is null")
+        if (sender == null || receiver == null || friendname == null || friendimage == null || message.value == null) {
+            Log.e("ChatAppViewModel", "sendMessage: One of the parameters is null")
             return@launch
         }
 
@@ -117,12 +119,12 @@ class ChatAppViewModel: ViewModel() {
 
                     firestore.collection("Conversation${FirebaseUtils.getUiLoggedIn()}").document(receiver).set(hashMapForRecent)
                     firestore.collection("Conversation$receiver")
-                        .document(FirebaseUtils.getUiLoggedIn()).update("message", message.value!!, "time", FirebaseUtils.getTime(), "person", name.value!!)
+                        .document(FirebaseUtils.getUiLoggedIn())
+                        .update("message", message.value!!, "time", FirebaseUtils.getTime(), "person", name.value!!)
 
-//                    if (task.isSuccessful){
-//                        message.value = ""
-//                    }
-
+                    if (task.isSuccessful){
+                        message.value = ""
+                    }
                 } else {
                     Log.e("ChatAppViewModel", "Failed to send message: ${task.exception?.message}")
                 }

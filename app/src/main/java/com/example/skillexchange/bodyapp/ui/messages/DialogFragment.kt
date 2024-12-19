@@ -74,23 +74,6 @@ class DialogFragment : Fragment() {
 //        binding.sendBtn.setOnClickListener {
 //            chatAppViewModel.sendMessage(FirebaseUtils.getUiLoggedIn(), args.users.userId!!, args.users.name!!, args.users.photoUrl!!)
 //        }
-        binding.sendBtn.setOnClickListener {
-            val sender = FirebaseUtils.getUiLoggedIn()
-            val receiver = args.users.userId
-            val friendname = args.users.name
-            val friendimage = args.users.photoUrl
-
-            if (receiver != null && friendname != null && friendimage != null) {
-                chatAppViewModel.sendMessage(sender, receiver, friendname, friendimage)
-            } else {
-                Log.e("DialogFragment", "One of the necessary parameters is null!")
-            }
-        }
-        chatAppViewModel.getMessages(args.users.userId!!).observe(viewLifecycleOwner, Observer {
-
-            initRecyclerView(it)
-
-        })
 
 
         binding.edTMessage.addTextChangedListener(object : TextWatcher {
@@ -103,38 +86,38 @@ class DialogFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-//        binding.sendBtn.setOnClickListener {
-//            val senderId = FirebaseUtils.getUiLoggedIn()
-//            val receiverId = args.users.userId
-//            val friendName = args.users.name
-//            val friendImage = args.users.photoUrl
-//            val messageText = chatAppViewModel.message.value
-//
-//            if (receiverId != null) {
-//                if (!senderId.isNullOrEmpty() && !friendName.isNullOrEmpty() && !friendImage.isNullOrEmpty() && !messageText.isNullOrEmpty()) {
-//                    chatAppViewModel.sendMessage(senderId, receiverId, friendName, friendImage)
-//
-//                    // Удаляем:
-//                    // chatAppViewModel.getMessages(receiverId).observe(viewLifecycleOwner, Observer { messages ->
-//                    //    initRecyclerView(messages)
-//                    // });
-//
-//                    binding.edTMessage.text.clear()
-//                } else {
-//                    Toast.makeText(
-//                        requireContext(),
-//                        "One of the message parameters is null or empty",
-//                        Toast.LENGTH_LONG
-//                    ).show()
-//                }
-//            } else {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Receiver ID is null, can't send message",
-//                    Toast.LENGTH_LONG
-//                ).show()
-//            }
-//        }
+        binding.sendBtn.setOnClickListener {
+            val senderId = FirebaseUtils.getUiLoggedIn()
+            val receiverId = args.users.userId
+            val friendName = args.users.name
+            val friendImage = args.users.photoUrl
+            val messageText = chatAppViewModel.message.value
+
+            if (receiverId != null) {
+                if (!senderId.isNullOrEmpty() && !friendName.isNullOrEmpty() && !friendImage.isNullOrEmpty() && !messageText.isNullOrEmpty()) {
+                    chatAppViewModel.sendMessage(senderId, receiverId, friendName, friendImage)
+
+                    // Удаляем:
+                    // chatAppViewModel.getMessages(receiverId).observe(viewLifecycleOwner, Observer { messages ->
+                    //    initRecyclerView(messages)
+                    // });
+
+                    binding.edTMessage.text.clear()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "One of the message parameters is null or empty",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Receiver ID is null, can't send message",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
 //        binding.sendBtn.setOnClickListener {
 //            val senderId = FirebaseUtils.getUiLoggedIn()
@@ -165,19 +148,24 @@ class DialogFragment : Fragment() {
 //            }
 //        }
 
+        chatAppViewModel.getMessages(args.users.userId!!).observe(viewLifecycleOwner, Observer {
 
+            initRecyclerView(it)
+
+        })
 
 
     }
 
-    private fun initRecyclerView(it: List<Messages>) {
+    private fun initRecyclerView(it: List<Messages>?) {
 
         messageAdapter = MessageAdapter()
         val layoutManager = LinearLayoutManager(context)
         binding.rvMessages.layoutManager = layoutManager
         layoutManager.stackFromEnd = true
-
-        messageAdapter.setMessageList(it)
+        if (it != null) {
+            messageAdapter.setMessageList(it)
+        }
         messageAdapter.notifyDataSetChanged()
         binding.rvMessages.adapter = messageAdapter
     }
