@@ -1,45 +1,59 @@
 package com.example.skillexchange.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.skillexchange.databinding.MessagesListItemBinding
-import com.example.skillexchange.models.Message
+import com.example.skillexchange.R
+import com.example.skillexchange.models.FirebaseUtils
+import com.example.skillexchange.models.Messages
 
-class MessageAdapter : ListAdapter<Message, MessageAdapter.ItemHolder>(ItemComparator()) {
+class MessageAdapter: RecyclerView.Adapter<MessageAdapter.MessageHolder>() {
 
-    class ItemHolder(var binding: MessagesListItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(user: Message) = with(binding){
-            message.text = user.message
-            username.text = user.nameUser
-        }
+    private var listOfMessage = listOf<Messages>()
+    private val LEFT = 0
+    private val RIGHT = 1
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
 
-        companion object{
-            fun create(parent: ViewGroup): ItemHolder{
-                return ItemHolder(MessagesListItemBinding
-                    .inflate(LayoutInflater.from(parent.context), parent, false))
-            }
+        val inflater = LayoutInflater.from(parent.context)
+
+        return if (viewType == RIGHT) {
+
+            val view = inflater.inflate(R.layout.chatitemright, parent, false)
+            MessageHolder(view)
+
+        } else {
+
+            val view = inflater.inflate(R.layout.chatitemleft, parent, false)
+            MessageHolder(view)
         }
     }
 
-    class ItemComparator : DiffUtil.ItemCallback<Message>(){
-        override fun areItemsTheSame(oldItem: Message, newItem: Message): Boolean {
-            return oldItem == newItem
-        }
+    override fun onBindViewHolder(holder: MessageHolder, position: Int) {
+        val message = listOfMessage[position]
 
-        override fun areContentsTheSame(oldItem: Message, newItem: Message): Boolean {
-            return oldItem == newItem
-        }
+        holder.messageText.visibility = View.VISIBLE
+        holder.messageText.visibility = View.VISIBLE
 
+        holder.messageText.setText(message.message)
+        holder.timeOfSent.text = message.time?.substring(0, 5) ?: ""
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder.create(parent)
+    override fun getItemCount(): Int {
+        return listOfMessage.size
     }
 
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.bind(getItem(position))
+    override fun getItemViewType(position: Int): Int =
+        if (listOfMessage[position].sender == FirebaseUtils.getUiLoggedIn()) RIGHT else LEFT
+
+    fun setMessageList(newList: List<Messages>) {
+        this.listOfMessage = newList
+    }
+
+    class MessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val messageText: TextView = itemView.findViewById(R.id.showMessage)
+        val timeOfSent: TextView = itemView.findViewById(R.id.timeView)
     }
 }

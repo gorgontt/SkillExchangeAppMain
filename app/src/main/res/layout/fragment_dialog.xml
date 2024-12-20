@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.skillexchange.mvvm.ChatAppViewModel" />
+    </data>
 
-<!--<layout>-->
-<!--    <data>-->
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.example.skillexchange.mvvm.ChatAppViewModel" />-->
-<!--    </data>-->
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".bodyapp.ui.messages.DialogFragment">
-
 
         <Toolbar
             android:id="@+id/toolbar"
@@ -39,7 +39,7 @@
                 android:layout_marginLeft="10dp"/>
 
             <TextView
-                android:id="@+id/userName"
+                android:id="@+id/userNameDialogFrag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -97,9 +97,10 @@
                 android:layout_margin="10dp"
                 android:elevation="4dp"
                 android:padding="10dp"
+                android:text="@={viewModel.message}"
                 android:layout_toLeftOf="@+id/send_btn"/>
 
-            <!--                android:text="@={viewModel.message}"-->
+
 
 
             <ImageButton
@@ -119,5 +120,5 @@
 
     </RelativeLayout>
 
-<!--</layout>-->
+</layout>
 

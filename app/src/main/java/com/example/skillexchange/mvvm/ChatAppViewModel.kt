@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.skillexchange.MyApplication
 import com.example.skillexchange.SharedPrefs
 import com.example.skillexchange.models.FirebaseUtils
+import com.example.skillexchange.models.Messages
 import com.example.skillexchange.models.Users
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,7 @@ class ChatAppViewModel: ViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
 
     val usersRepo = UsersRepo()
+    val messagesRepo = MessagesRepo()
 
     init {
         getCurrentUser()
@@ -31,24 +33,6 @@ class ChatAppViewModel: ViewModel() {
     }
 
     //get current user info
-//    fun getCurrentUser() = viewModelScope.launch(Dispatchers.IO ) {
-//
-//        val context = MyApplication.instance.applicationContext
-//        firestore.collection("users").document(FirebaseUtils.getUiLoggedIn()).addSnapshotListener { value, error ->
-//
-//            if (value!!.exists() && value != null){
-//                val users = value.toObject(Users::class.java)
-//                name.value = users?.name!!
-//                photoUrl.value = users?.photoUrl!!
-//
-//                val mysharedPrefs = SharedPrefs(context)
-//                mysharedPrefs.setValue("name", users.name!!)
-//            }
-//        }
-//
-//
-//    }
-
     fun getCurrentUser() = viewModelScope.launch(Dispatchers.IO ) {
 
         val context = MyApplication.instance.applicationContext
@@ -84,11 +68,12 @@ class ChatAppViewModel: ViewModel() {
         }
 
         val context = MyApplication.instance.applicationContext
+        val messageText = message.value!!
 
         val hashMap = hashMapOf<String, Any>(
             "sender" to sender,
             "receiver" to receiver,
-            "message" to message.value!!,
+            "message" to messageText,
             "time" to FirebaseUtils.getTime()
         )
 
@@ -102,26 +87,83 @@ class ChatAppViewModel: ViewModel() {
         mySharedPrefs.setValue("friendimage", friendimage)
 
         // отправка сообщения
-        firestore.collection("messages").document(uniqueId.toString())
+
+        // отправка сообщения
+        firestore.collection("messages").document(uniqueId)
             .collection("chats").document(FirebaseUtils.getTime()).set(hashMap).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val hashMapForRecent = hashMapOf<String, Any>(
+                    // Создание документа для Недавних сообщений
+                    val recentMessage = hashMapOf<String, Any>(
                         "friendid" to receiver,
                         "time" to FirebaseUtils.getTime(),
-                        "sender" to FirebaseUtils.getUiLoggedIn(),
+                        "sender" to sender,
                         "message" to message.value!!,
                         "friendsimage" to friendimage,
                         "name" to friendname,
                         "person" to "you"
                     )
 
-                    firestore.collection("Conversation${FirebaseUtils.getUiLoggedIn()}").document(receiver).set(hashMapForRecent)
+                    // Осуществляем проверку существования
                     firestore.collection("Conversation$receiver")
-                        .document(FirebaseUtils.getUiLoggedIn())
-                        .update("message", message.value!!, "time", FirebaseUtils.getTime(), "person", name.value!!)
+                        .document(FirebaseUtils.getUiLoggedIn()).get().addOnSuccessListener { document ->
+                            if (document.exists()) {
+                                // Обновление документа
+                                firestore.collection("Conversation$receiver")
+                                    .document(FirebaseUtils.getUiLoggedIn())
+                                    .update("message", message.value!!, "time", FirebaseUtils.getTime(), "person", name.value!!)
+                            } else {
+                                // Создаем новый документ
+                                firestore.collection("Conversation$receiver").document(FirebaseUtils.getUiLoggedIn()).set(recentMessage)
+                            }
+                        }.addOnFailureListener {
+                            Log.e("ChatAppViewModel", "Error checking document: ${it.message}")
+                        }
                 } else {
                     Log.e("ChatAppViewModel", "Failed to send message: ${task.exception?.message}")
                 }
             }
+
+
+//        firestore.collection("messages").document(uniqueId.toString())
+//            .collection("chats").document(FirebaseUtils.getTime()).set(hashMap).addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    val hashMapForRecent = hashMapOf<String, Any>(
+//                        "friendid" to receiver,
+//                        "time" to FirebaseUtils.getTime(),
+//                        "sender" to FirebaseUtils.getUiLoggedIn(),
+//                        "message" to message.value!!,
+//                        "friendsimage" to friendimage,
+//                        "name" to friendname,
+//                        "person" to "you"
+//                    )
+//
+//                    firestore.collection("Conversation${FirebaseUtils.getUiLoggedIn()}").document(receiver).set(hashMapForRecent)
+//                    firestore.collection("Conversation$receiver").document(FirebaseUtils.getUiLoggedIn()).get().addOnSuccessListener { document ->
+//                        if (document.exists()) {
+//                            firestore.collection("Conversation$receiver").document(FirebaseUtils.getUiLoggedIn())
+//                                .update("message", message.value!!, "time", FirebaseUtils.getTime(), "person", name.value!!)
+//                        } else {
+//                            firestore.collection("Conversation$receiver").document(FirebaseUtils.getUiLoggedIn()).set(hashMapForRecent)
+//                        }
+//                    }
+//
+////                    firestore.collection("Conversation$receiver").document(FirebaseUtils.getUiLoggedIn()).set(hashMapForRecent).addOnSuccessListener {
+////                    }.addOnFailureListener { e ->
+////                        Log.e("ChatAppViewModel", "Failed to create document: ${e.message}")
+////                    }
+////
+////                    firestore.collection("Conversation$receiver")
+////                        .document(FirebaseUtils.getUiLoggedIn())
+////                        .update("message", message.value!!, "time", FirebaseUtils.getTime(), "person", name.value!!)
+//                } else {
+//                    Log.e("ChatAppViewModel", "Failed to send message: ${task.exception?.message}")
+//                }
+//            }
+
+    }
+
+    fun getMessages(friendid: String) : LiveData<List<Messages>>{
+
+        return messagesRepo.getMessages(friendid)
     }
 }

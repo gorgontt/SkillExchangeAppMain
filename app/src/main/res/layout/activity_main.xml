@@ -1,87 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.skillexchange.mvvm.ChatAppViewModel" />
+    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:src="@drawable/svg2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bottom_sheet_dialog_style_dark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="match_parent">
 
-            <TextView
+
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_marginTop="42dp"
-                android:layout_marginRight="26dp"
-                android:layout_marginBottom="54dp"
-                android:background="#00C89F9F"
-                android:fontFamily="@font/lora"
-                android:text="SkillExchange - приложение для обмена и приобретения навыков"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:layout_marginTop="36dp"
+                android:src="@drawable/svg2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_signIn"
-                android:layout_width="match_parent"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_height="41dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="18dp"
-                android:fontFamily="@font/lora"
-                android:text="Вход"
-                android:background="@drawable/button_corners"
-                android:textAllCaps="false"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/btn_signUp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
-                android:text="Регистрация"
-                android:textColor="@color/white"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:background="@drawable/button_stroke_radius"
-                android:textSize="20dp"
-                android:fontFamily="@font/lora"
-                android:textAllCaps="false"
-                android:layout_marginBottom="49dp"/>
+                android:orientation="vertical"
+                android:background="@drawable/bottom_sheet_dialog_style_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="42dp"
+                    android:layout_marginRight="26dp"
+                    android:layout_marginBottom="54dp"
+                    android:background="#00C89F9F"
+                    android:fontFamily="@font/lora"
+                    android:text="SkillExchange - приложение для обмена и приобретения навыков"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_signIn"
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="41dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="18dp"
+                    android:fontFamily="@font/lora"
+                    android:text="Вход"
+                    android:background="@drawable/button_corners"
+                    android:textAllCaps="false"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/btn_signUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="Регистрация"
+                    android:textColor="@color/white"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="@drawable/button_stroke_radius"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/lora"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="49dp"/>
 
 
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
-</FrameLayout>
+    </FrameLayout>
+</layout>
